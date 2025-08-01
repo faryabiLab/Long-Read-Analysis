@@ -11,4 +11,5 @@ Install an environment via `conda env create -f <env file>`
 Scripts simply wrapping common operations & logging the command. Run the script with no parameters to see usage.
 * `hifiasm_assembly.sh`: Assemble a `fastq` using `hifiasm`
 * `align_contigs_to_ref.sh`: Wraps `minimap2`, used to align assembled contigs to reference sequence.
+* `extract_split_reads.sh`: Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences).
 
