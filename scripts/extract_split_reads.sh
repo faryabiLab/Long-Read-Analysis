@@ -20,7 +20,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 bam=""
-threads=48
+threads=1
 window=1000000
 output_prefix=""
 b1=""
@@ -48,6 +48,10 @@ while [[ $# -gt 0 ]]; do
 			b2="$2"
 			shift 2
 			;;
+		-t | --threads )
+			threads="$2"
+			shift 2
+			;;
 		-* | --* )
 			print_usage_exit $1
 			;;
@@ -72,22 +76,22 @@ echo "Extracting reads from ${chr1}:${start1}-${end1} and ${chr2}:${start2}-${en
 
 cmd="
 echo '1: Extract ${chr1}:${start1}-${end1} from ${bam}'
-samtools view -F 4 $bam ${chr1}:${start1}-${end1} | cut -f1 | sort | uniq > ${out_prefix}_${chr1}_reads.txt
+samtools view -@ ${threads} -F 4 $bam ${chr1}:${start1}-${end1} | cut -f1 | sort | uniq > ${out_prefix}_${chr1}_reads.txt
 
 echo '2: Extract ${chr2}:${start2}-${end2} from ${bam}'
-samtools view -F 4 $bam ${chr2}:${start2}-${end2} | cut -f1 | sort | uniq > ${out_prefix}_${chr2}_reads.txt
+samtools view -@ ${threads} -F 4 $bam ${chr2}:${start2}-${end2} | cut -f1 | sort | uniq > ${out_prefix}_${chr2}_reads.txt
 
 echo '3: Find common read names'
 comm -12 ${out_prefix}_${chr1}_reads.txt ${out_prefix}_${chr2}_reads.txt > ${out_prefix}_split_reads_${chr1}-${chr2}.txt
 
 echo '4: Extract header from ${bam}'
-samtools view -H ${bam} > ${out_prefix}_header.sam
+samtools view -@ 4 -H ${bam} > ${out_prefix}_header.sam
 
 echo '5: Extract the split read names from ${bam}'
-samtools view ${bam} | grep -wFf ${out_prefix}_split_reads_${chr1}-${chr2}.txt > ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam
+samtools view -@ ${threads} ${bam} | grep -wFf ${out_prefix}_split_reads_${chr1}-${chr2}.txt > ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam
 
 echo '6: Create final bam with header and ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam'
-cat ${out_prefix}_header.sam ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam | samtools view -Sb - > ${out_prefix}_split_reads_${chr1}-${chr2}.bam
+cat ${out_prefix}_header.sam ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam | samtools view -@ ${threads} -Sb - > ${out_prefix}_split_reads_${chr1}-${chr2}.bam
 "
 
 # Log and run
