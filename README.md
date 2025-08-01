@@ -2,7 +2,7 @@
 ## Usage
 Install [conda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2) and activate the appropriate environment via:
 ```
-conda env create -f ont-env
+conda env create -f ont-env.yml
 ```
 
 ## Environments
