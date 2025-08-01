@@ -1,6 +1,9 @@
 # Long-Read-Analysis
 ## Usage
-Install [conda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2) and activate the appropriate environment. All dependencies are housed within these environments.
+Install [conda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2) and activate the appropriate environment via:
+```
+conda env create -f ont-env
+```
 
 ## Environments
 Install an environment via `conda env create -f <env file>`
