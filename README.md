@@ -1,5 +1,6 @@
 # Long-Read-Analysis
-Scripts, information, and configuration files pertaining to the analysis of Long Reads from Whole Genome Sequencing (WGS), specifically ONT data.
+## Usage
+Install [conda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2) and activate the appropriate environment. All dependencies are housed within these environments.
 
 ## Environments
 Install an environment via `conda env create -f <env file>`
