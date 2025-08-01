@@ -2,7 +2,7 @@
 # Align, convert, and sort assembled contigs to refrence genome
 
 
-USAGE="Usage: $0 -b <bam file> -w <window size> -b1 <5' side of breakpoint, i.e. chr11:690000> -b2 <3' side of breakpoint> "
+USAGE="Usage: $0 -b <bam file> -o <output prefix> -w <window size> -b1 <5' side of breakpoint, i.e. chr11:690000> -b2 <3' side of breakpoint> "
 
 function print_usage_exit()
 {
@@ -29,7 +29,7 @@ b2=""
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		-b | --bam )
-			ref="$2"
+			bam="$2"
 			shift 2 # Shift past both argument and value
 			;;
 		-o | --output_prefix )
@@ -68,25 +68,28 @@ end1=$pos1
 start2=$pos2
 end2=$((pos2 + half_window))
 
-# Final command
-cmd=$(cat <<EOF
-# Extract reads from window 1
-samtools view -F 4 ${bam} ${chr1}:${start1}-${end1} | cut -f1 | sort | uniq > ${out_prefix}_chr1_reads.txt
+echo "Extracting reads from ${chr1}:${start1}-${end1} and ${chr2}:${start2}-${end2}"
 
-# Extract reads from window 2
-samtools view -F 4 ${bam} ${chr2}:${start2}-${end2} | cut -f1 | sort | uniq > ${out_prefix}_chr2_reads.txt
+cmd="
+echo '1: Extract ${chr1}:${start1}-${end1} from ${bam}'
+samtools view -F 4 $bam ${chr1}:${start1}-${end1} | cut -f1 | sort | uniq > ${out_prefix}_${chr1}_reads.txt
 
-# Intersect to get split reads
-comm -12 ${out_prefix}_chr1_reads.txt ${out_prefix}_chr2_reads.txt > ${out_prefix}_split_reads.txt
+echo '2: Extract ${chr2}:${start2}-${end2} from ${bam}'
+samtools view -F 4 $bam ${chr2}:${start2}-${end2} | cut -f1 | sort | uniq > ${out_prefix}_${chr2}_reads.txt
 
-# Extract all alignments for split reads
-samtools view -h ${bam} | grep -E "^@|$(paste -sd'|' ${out_prefix}_split_reads.txt)" | samtools view -Sb - > ${out_prefix}_split_reads.bam
+echo '3: Find common read names'
+comm -12 ${out_prefix}_${chr1}_reads.txt ${out_prefix}_${chr2}_reads.txt > ${out_prefix}_split_reads_${chr1}-${chr2}.txt
 
-# Optional: convert to SAM for inspection
-samtools view ${out_prefix}_split_reads.bam > ${out_prefix}_split_reads.sam
-EOF
-)
+echo '4: Extract header from ${bam}'
+samtools view -H ${bam} > ${out_prefix}_header.sam
+
+echo '5: Extract the split read names from ${bam}'
+samtools view ${bam} | grep -wFf ${out_prefix}_split_reads_${chr1}-${chr2}.txt > ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam
+
+echo '6: Create final bam with header and ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam'
+cat ${out_prefix}_header.sam ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam | samtools view -Sb - > ${out_prefix}_split_reads_${chr1}-${chr2}.bam
+"
 
 # Log and run
 echo "$cmd" > "${out_prefix}.cmd"
-bash -c "$cmd"
+eval "${cmd}"
