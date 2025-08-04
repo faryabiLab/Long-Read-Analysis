@@ -17,3 +17,6 @@ Scripts simply wrapping common operations & logging the command. Run the script 
 * `align_contigs_to_ref.sh`: Wraps `minimap2`, used to align assembled contigs to reference sequence.
 * `extract_split_reads.sh`: Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences).
 
+#### Utilities
+* `parse_cigar.py`: Parse CIGAR strings within a `sam` file.
+
