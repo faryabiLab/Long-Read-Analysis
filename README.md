@@ -16,6 +16,7 @@ Scripts simply wrapping common operations & logging the command. Run the script 
 * `hifiasm_assembly.sh`: Assemble a `fastq` using `hifiasm`
 * `align_contigs_to_ref.sh`: Wraps `minimap2`, used to align assembled contigs to reference sequence.
 * `extract_split_reads.sh`: Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences).
+* `seqkit_stats.sh`: Simple wrapper of `seqkit stats` command to get assembly statistics like average length and N50.
 
 #### Utilities
 * `parse_cigar.py`: Parse and plot CIGAR strings within a `sam` file.
