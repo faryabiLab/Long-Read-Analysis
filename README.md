@@ -18,5 +18,5 @@ Scripts simply wrapping common operations & logging the command. Run the script 
 * `extract_split_reads.sh`: Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences).
 
 #### Utilities
-* `parse_cigar.py`: Parse CIGAR strings within a `sam` file.
+* `parse_cigar.py`: Parse and plot CIGAR strings within a `sam` file.
 
