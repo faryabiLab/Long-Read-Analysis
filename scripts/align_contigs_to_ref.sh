@@ -45,7 +45,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 cmd="minimap2 -ax asm5 -Y -t ${threads} ${ref} ${assem} | samtools view -bS - | samtools sort -@ ${threads} -o ${out_prefix}.sorted.bam"
-echo ${cmd} > "${out_prefix}.cmd"
+echo ${cmd} > "${out_prefix}.align.cmd"
 
 eval ${cmd}
 
