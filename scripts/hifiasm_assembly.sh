@@ -39,7 +39,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 cmd="hifiasm -o ${out_prefix}.asm --ont -t ${threads} ${fastq}"
-echo ${cmd} > "${out_prefix}.hifiasm.cmd"
+echo ${cmd} > "${out_prefix}.HiFiasm_assembly.cmd"
 
 eval ${cmd}
 
