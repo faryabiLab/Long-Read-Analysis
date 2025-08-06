@@ -17,7 +17,8 @@ BASE_DIR=$(pwd)
 dirs=(
     "$BASE_DIR/analysis/assembly/global_assembly/assembly_fasta"
     "$BASE_DIR/analysis/assembly/global_assembly/dot_plot"
-    "$BASE_DIR/analysis/assembly/local_assembly"
+    "$BASE_DIR/analysis/assembly/local_assembly/assembly_fasta"
+    "$BASE_DIR/analysis/assembly/local_assembly/dot_plot"
     "$BASE_DIR/analysis/copyNumber/img"
     "$BASE_DIR/analysis/logs"
     "$BASE_DIR/analysis/variants"
