@@ -95,5 +95,5 @@ cat ${out_prefix}_header.sam ${out_prefix}_split_reads_body_${chr1}-${chr2}.sam 
 "
 
 # Log and run
-echo "$cmd" > "${out_prefix}.extractSplitReads.cmd"
+echo "$cmd" > "${out_prefix}.extract_split_reads.cmd"
 eval "${cmd}"
