@@ -40,7 +40,7 @@ done
 
 cmd="seqkit stats ${fasta} --all > ${out_prefix}.stats"
 
-echo ${cmd} > "${out_prefix}.seqkitStats.cmd"
+echo ${cmd} > "${out_prefix}.seqkit_stats.cmd"
 
 eval ${cmd}
 
