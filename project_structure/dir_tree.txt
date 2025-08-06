@@ -1,0 +1,19 @@
+Cell_Line_ONT/
+├── analysis
+│   ├── assembly
+│   │   ├── global_assembly
+│   │   │   ├── assembly_fasta
+│   │   │   └── dot_plot
+│   │   └── local_assembly
+│   ├── copyNumber
+│   │   └── img
+│   ├── logs
+│   └── variants
+├── data
+│   ├── qc
+│   ├── raw
+│   ├── trimmed_align
+│   ├── trimmed_fastq
+│   └── trimmed_filtered
+└── results
+
