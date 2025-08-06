@@ -20,4 +20,5 @@ Scripts simply wrapping common operations & logging the command. Run the script 
 
 #### Utilities
 * `parse_cigar.py`: Parse and plot CIGAR strings within a `sam` file.
+* `make_dir_structure.sh`: Simply create the standardized production data folder structure for these analyses.
 
