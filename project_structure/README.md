@@ -4,4 +4,4 @@ cd top_level_dir/
 ./make_dir_structure.sh
 ```
 
-The structure is visualized in `dir_tree.txt`
+The structure is visualized in `dir_tree.txt` along with descriptions of the purpose of each (sub)directory.
