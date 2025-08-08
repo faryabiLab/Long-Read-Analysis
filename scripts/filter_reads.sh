@@ -1,5 +1,5 @@
 #!/bin/bash
-# Align, convert, and sort assembled contigs to refrence genome
+# Wrapper for FiltLong; filter long reads by length
 
 
 USAGE="Usage: $0 -f <ONT fastq> -o <output prefix>"
@@ -39,8 +39,8 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="gunzip -c ${fastq} | NanoFilt -l 3000 -s --logfile ${output_prefix}.filter.log"
-echo ${cmd} > "${out_prefix}.NanoFilt.cmd"
+cmd="filtlong --keep_percent 90 ${fastq} > ${output_prefix}.fastq"
+echo ${cmd} > "${out_prefix}.FiltLong.cmd"
 
 eval ${cmd}
 
