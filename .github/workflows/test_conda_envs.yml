@@ -25,11 +25,11 @@ jobs:
       - name: Find env files
         id: find_envs
         run: |
-          files=$(find envs -name '*.yml')
-          if [ -z "$files" ]; then
+         files=$(find envs -name '*.yml')
+         if [ -z "$files" ]; then
           echo "No .yml files found in envs/. Exiting."
           echo "envfiles=[]" >> $GITHUB_OUTPUT
-        else
+         else
           json=$(printf '%s\n' $files | jq -R -s -c 'split("\n")[:-1]')
           echo "envfiles=$json" >> $GITHUB_OUTPUT
         fi
