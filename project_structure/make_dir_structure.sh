@@ -1,4 +1,5 @@
 #!/bin/bash
+# Set up the directory structure for ONT data store 
 
 # Create directory safely with -p 
 safe_mkdir() {
@@ -23,10 +24,13 @@ dirs=(
     "$BASE_DIR/analysis/logs"
     "$BASE_DIR/analysis/variants"
     "$BASE_DIR/data/qc"
+    "$BASE_DIR/data/qc_trimmed"
+    "$BASE_DIR/data/qc_trimmed_filtered"
     "$BASE_DIR/data/raw"
     "$BASE_DIR/data/trimmed_align"
     "$BASE_DIR/data/trimmed_fastq"
     "$BASE_DIR/data/trimmed_filtered"
+    "$BASE_DIR/data/trimmed_filtered_corrected"
     "$BASE_DIR/results"
 )
 
