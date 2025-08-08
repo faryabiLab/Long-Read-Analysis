@@ -17,7 +17,9 @@ Scripts simply wrapping common operations & logging the command. Run the script 
 * `scripts/align_contigs_to_ref.sh`: Wraps `minimap2`, used to align assembled contigs to reference sequence.
 * `scripts/extract_split_reads.sh`: Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences).
 * `scripts/seqkit_stats.sh`: Simple wrapper of `seqkit stats` command to get assembly statistics like average length and N50.
-* `scripts/filter_reads_length.sh`: Wraps `FiltLong` to filter out reads in the bottom 10% by length. 
+* `scripts/filter_reads_length.sh`: Wraps `FiltLong` to filter out reads in the bottom 10% by length.
+* **Herro Read Error Correction**
+  * `scripts/herro_preprocess.sh`: Runs the `herro` pipeline preprocessing step.
 
 #### Utilities
 * `scripts/parse_cigar.py`: Parse and plot CIGAR strings within a `sam` file.
