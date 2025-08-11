@@ -1,21 +1,32 @@
-Cell_Line_ONT/                      # Top-level directory for single entity / sample (i.e. cell line)
-├── analysis                        # Directory for all activate analysis (i.e. genome assembly, copy number variations, variant calling, etc.)
-│   ├── assembly                    # Genome assembly analysis
-│   │   ├── global_assembly         # Genome-wide assembly analysis
-│   │   │   ├── assembly_fasta      # .fasta files representing genome-wide assemblies
-│   │   │   └── dot_plot            # Dot-plots comparing assembled sequeces with reference genomes (for global assemblies)
-│   │   └── local_assembly          # Local, variant-specific genome assembly
-│   │   │   ├── assembly_fasta      # .fasta files representing local assemblies
-│   │   │   └── dot_plot            # Dot-plots comparing assembled sequeces with reference genomes (for local assemblies)
-│   ├── copyNumber                  # Copy number variation analysis, holds coverage data files
-│   │   └── img                     # CNV plots for each chromosome
-│   ├── logs                        # Log files for all analysis types
-│   └── variants                    # Variant calling analysis
-├── data                            # Directory for all raw data used in the analysis
-│   ├── qc                          # Quality-control metrics for raw data (NanoPlot reports)
-│   ├── raw                         # The raw .fastq file
-│   ├── trimmed_align               # Adapter trimmed aligned file (.bam)
-│   ├── trimmed_fastq               # Adapter trimmed reads file (.fastq)
-│   └── trimmed_filtered            # Adapter trimmed + size / quality-filtered (.fastq)
-└── results                         # Direcory for all FINAL figures and data files. DATA HERE SHOULD ONLY BE CHANGED AS NEEDED - NO ACTIVE ANALYSIS.
+Cell_Line_ONT/                                    # Top-level directory for single entity / sample (i.e. cell line)
+├── analysis                                      # Directory for all activate analysis (i.e. genome assembly, copy number variations, variant calling, etc.)
+│   ├── assembly                                  # Genome assembly analysis
+│   │   ├── global_assembly                       # Genome-wide assembly analysis
+│   │   │   ├── assembly_fasta                    # .fasta files representing genome-wide assemblies
+│   │   │   └── dot_plot                          # Dot-plots comparing assembled sequeces with reference genomes (for global assemblies)
+│   │   └── local_assembly                        # Local, variant-specific genome assembly
+│   │       ├── assembly_fasta
+│   │       └── dot_plot
+│   ├── copyNumber                                # Copy number variation analysis, holds coverage data files
+│   │   └── img                                   # CNV plots for each chromosome
+│   ├── logs                                      # Log files for all analysis types
+│   └── variants                                  # Variant calling analysis
+├── data                                          # Directory for all data files used in the analysis
+│   ├── align                                     # All aligned (i.e. .bam) files
+│   │   ├── raw                                   # Aligned raw .fastq
+│   │   ├── trimmed                               # Aligned adapter trimmed .fastq
+│   │   ├── trimmed_filtered                      # Aligned adapter trimmed and size filtered .fastq
+│   │   └── trimmed_filtered_corrected            # Aligned adapter trimmed, size filtered, and herro corrected .fastq
+│   ├── fastq                                     # .fastq files
+│   │   ├── raw
+│   │   ├── trimmed
+│   │   ├── trimmed_filtered
+│   │   └── trimmed_filtered_corrected
+│   ├── logs                                      # Log files for alignment / QC jobs
+│   └── qc                                        # Quality control data (done with .fastq)
+│       ├── raw
+│       ├── trimmed
+│       ├── trimmed_filtered
+│       └── trimmed_filtered_corrected
+└── results                                       # Direcory for all FINAL figures and data files. DATA HERE SHOULD ONLY BE CHANGED AS NEEDED - NO ACTIVE ANALYSIS.
 
