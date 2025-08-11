@@ -38,6 +38,12 @@ This section highlights the analysis scripts in this repository, broken down by 
 | Script  | Description |
 | ------------- | ------------- |
 | `scripts/parse_cigar.py` | Parse and plot CIGAR strings within a `sam` file. |
+#### Project Structure / Directory Setup
+| Script  | Description |
+| ------------- | ------------- |
 | `project_structure/make_dir_structure.sh` | Create the standardized production data folder structure for these analyses. |
+| `project_structure/generator.py` | Set up the project directory structure with additional metadata and logging. |
+
+
 
 
