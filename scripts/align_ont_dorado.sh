@@ -2,7 +2,7 @@
 # Align, convert, and sort assembled contigs to refrence genome
 
 
-USAGE="Usage: $0 -f <reference fasta> -a <assembly fasta> -o <output prefix> -p <dorado path>"
+USAGE="Usage: $0 -f <fastq to align> -a <assembly fasta> -o <output prefix> -p <dorado path>"
 
 function print_usage_exit()
 {
@@ -19,7 +19,7 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-ref=""
+fastq=""
 assem=""
 threads=24
 out_prefix=""
@@ -27,8 +27,8 @@ path=""
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
-		-f | --fasta )
-			ref="$2"
+		-f | --fastq )
+			fastq="$2"
 			shift 2 # Shift past both argument and value
 			;;
 		-o | --output_prefix )
