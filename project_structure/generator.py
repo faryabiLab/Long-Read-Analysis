@@ -80,20 +80,6 @@ def iter_all_dirs(spec: Dict[str, Any]) -> Iterable[Tuple[str, Dict[str, Any], D
 def ensure_dir(p: Path) -> None:
     p.mkdir(parents=True, exist_ok=True)
 
-def write_dir_readme(dir_path: Path, stage_id: str, stage_desc: str, allow: List[str], notes: str) -> None:
-    lines = []
-    lines.append(f"# {dir_path.as_posix()}")
-    lines.append("")
-    lines.append(f"**Stage:** `{stage_id}` — {stage_desc if stage_desc else ''}")
-    allow_str = ", ".join(allow) if allow else "(any)"
-    lines.append(f"**Allowed patterns:** {allow_str}")
-    if notes:
-        lines.append(f"**Notes:** {notes}")
-    lines.append("")
-    content = "\n".join(lines) + "\n"
-    (dir_path / "README.md").write_text(content)
-
-
 def build_mermaid(flow_edges: List[str]) -> str:
     out = ["```mermaid", "flowchart LR"]
     for edge in flow_edges:
@@ -104,7 +90,6 @@ def build_mermaid(flow_edges: List[str]) -> str:
         out.append(f"    {a.replace('/', '_')}[\"{a}\"] --> {b.replace('/', '_')}[\"{b}\"]")
     out.append("```")
     return "\n".join(out)
-
 
 def write_directory_standard_md(root: Path, spec: Dict[str, Any]) -> None:
     md = []
@@ -127,24 +112,6 @@ def write_directory_standard_md(root: Path, spec: Dict[str, Any]) -> None:
     md.append("")
 
     (root / "DIRECTORY_STANDARD.md").write_text("\n".join(md) + "\n")
-
-
-def write_manifest(root: Path, spec: Dict[str, Any]) -> None:
-    manifest = {
-        "project": spec.get("project"),
-        "root": str(root.resolve()),
-        "dirs": [],
-    }
-    for sid, stage, d in iter_all_dirs(spec):
-        manifest["dirs"].append({
-            "stage": sid,
-            "stage_desc": stage.get("desc", ""),
-            "path": d.get("path"),
-            "allow": d.get("allow", []),
-            "notes": d.get("notes", ""),
-        })
-    (root / "DIRMANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n")
-
 
 # ------------------------------
 # Validation
@@ -204,18 +171,8 @@ def create_scaffold(root: Path, spec: Dict[str, Any]) -> None:
             continue
         dir_abs = root / rel
         ensure_dir(dir_abs)
-        write_dir_readme(
-            dir_abs,
-            stage_id=sid,
-            stage_desc=stage.get("desc", ""),
-            allow=d.get("allow", []),
-            notes=d.get("notes", ""),
-        )
-
     # Top-level docs + manifest
     write_directory_standard_md(root, spec)
-    write_manifest(root, spec)
-
 
 # ------------------------------
 # CLI
