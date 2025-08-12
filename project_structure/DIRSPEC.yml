@@ -9,12 +9,14 @@ stages:
     dirs:
       - path: analysis/assembly/global_assembly/assembly_fasta
         allow: ["*.fasta", "*.fa", "*.fna", "*.gz"]
+        script: hifiasm_assembly.sh
         notes: Genome-wide assembled FASTA sequences
       - path: analysis/assembly/global_assembly/dot_plot
         allow: ["*.png", "*.jpg", "*.svg", "*.pdf"]
         notes: Dot-plots comparing assemblies to references
       - path: analysis/assembly/local_assembly/assembly_fasta
         allow: ["*.fasta", "*.fa", "*.fna", "*.gz"]
+        script: hifiasm_assembly.sh
         notes: Local variant-specific assembled FASTA sequences
       - path: analysis/assembly/local_assembly/dot_plot
         allow: ["*.png", "*.jpg", "*.svg", "*.pdf"]
@@ -34,15 +36,19 @@ stages:
     dirs:
       - path: data/align/raw
         allow: ["*.bam", "*.bai", "*.cram", "*.paf"]
+        script: align_ont_dorado.sh
         notes: Aligned raw FASTQ
       - path: data/align/trimmed
         allow: ["*.bam", "*.bai", "*.cram", "*.paf"]
+        script:
         notes: Aligned adapter-trimmed FASTQ
       - path: data/align/trimmed_filtered
         allow: ["*.bam", "*.bai", "*.cram", "*.paf"]
+        script: align_ont_dorado.sh
         notes: Aligned trimmed + size-filtered FASTQ
       - path: data/align/trimmed_filtered_corrected
         allow: ["*.bam", "*.bai", "*.cram", "*.paf"]
+        script: align_ont_dorado.sh
         notes: Aligned trimmed, filtered, and Herro-corrected FASTQ
 
       - path: data/fastq/raw
@@ -50,12 +56,15 @@ stages:
         notes: Raw FASTQ files from ONT
       - path: data/fastq/trimmed
         allow: ["*.fastq", "*.fastq.gz"]
+        script:
         notes: Adapter-trimmed FASTQ
       - path: data/fastq/trimmed_filtered
         allow: ["*.fastq", "*.fastq.gz"]
+        script: filter_reads_length.sh
         notes: Trimmed and size-filtered FASTQ
       - path: data/fastq/trimmed_filtered_corrected
         allow: ["*.fastq", "*.fastq.gz"]
+        script: herro_preprocess.sh
         notes: Trimmed, filtered, and Herro-corrected FASTQ
 
       - path: data/logs
@@ -64,15 +73,19 @@ stages:
 
       - path: data/qc/raw
         allow: ["*fastqc.html", "*.zip", "*.txt", "*.png"]
+        script: nanoplot_run.sh
         notes: QC outputs for raw FASTQ
       - path: data/qc/trimmed
         allow: ["*fastqc.html", "*.zip", "*.txt", "*.png"]
+        script: nanoplot_run.sh
         notes: QC outputs for trimmed FASTQ
       - path: data/qc/trimmed_filtered
         allow: ["*fastqc.html", "*.zip", "*.txt", "*.png"]
+        script: nanoplot_run.sh
         notes: QC outputs for trimmed + filtered FASTQ
       - path: data/qc/trimmed_filtered_corrected
         allow: ["*fastqc.html", "*.zip", "*.txt", "*.png"]
+        script: nanoplot_run.sh
         notes: QC outputs for trimmed, filtered, and corrected FASTQ
 
   - id: results

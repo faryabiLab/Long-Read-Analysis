@@ -28,6 +28,7 @@ import argparse
 import fnmatch
 import json
 import os
+import shutil
 from pathlib import Path
 import sys
 from typing import Dict, List, Any, Iterable, Tuple
@@ -79,6 +80,11 @@ def iter_all_dirs(spec: Dict[str, Any]) -> Iterable[Tuple[str, Dict[str, Any], D
 
 def ensure_dir(p: Path) -> None:
     p.mkdir(parents=True, exist_ok=True)
+
+def check_script_loc() -> bool:
+    if (Path("..") / "scripts").is_dir():
+        return True
+    return False
 
 def build_mermaid(flow_edges: List[str]) -> str:
     out = ["```mermaid", "flowchart LR"]
@@ -169,8 +175,20 @@ def create_scaffold(root: Path, spec: Dict[str, Any]) -> None:
         if not rel:
             print(f"[WARN] Skipping empty path in stage {sid}")
             continue
+
+        script = d.get("script")
+        if not script:
+            print(f"[WARN] Skipping empty script in stage {sid}")
+
         dir_abs = root / rel
-        ensure_dir(dir_abs)
+        ensure_dir(dir_abs)  # make dir
+
+        if check_script_loc() and script:
+            script_path = Path("..") / "scripts" / script
+            shutil.copy(script_path, rel)
+        else:
+            print(f"[WARN] Couldn't find script directory from current working dir, skipping copy.")
+        # copy script to dir
     # Top-level docs + manifest
     write_directory_standard_md(root, spec)
 
