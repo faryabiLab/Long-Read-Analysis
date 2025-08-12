@@ -18,6 +18,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `scripts/seqkit_stats.sh`  | Simple wrapper of `seqkit stats` command to get assembly statistics like average length and N50.  |
 | `scripts/filter_reads_length.sh`  | Wraps `FiltLong` to filter out reads in the bottom 10% by length.  |
 | `scripts/nanoplot_run.sh` | Use `NanoPlot` to generate summary statistics for `fastq` |
+| `scripts/porechop_trim.sh` | Wraps `porechop` for adapter trimming. |
 #### Alignment
 | Script  | Description |
 | ------------- | ------------- |
