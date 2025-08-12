@@ -23,7 +23,7 @@ stages:
         allow: ["*.png", "*.jpg", "*.svg", "*.pdf"]
         notes: CNV plots for each chromosome
       - path: analysis/logs
-        allow: ["*.log", "*.txt"]
+        allow: ["*.log", "*.txt", ".cmd"]
         notes: Log files from analysis runs
       - path: analysis/variants
         allow: ["*.vcf", "*.vcf.gz", "*.tsv", "*.bed"]
@@ -59,7 +59,7 @@ stages:
         notes: Trimmed, filtered, and Herro-corrected FASTQ
 
       - path: data/logs
-        allow: ["*.log", "*.txt"]
+        allow: ["*.log", "*.txt", ".cmd"]
         notes: Log files for alignment and QC jobs
 
       - path: data/qc/raw
