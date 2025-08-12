@@ -5,10 +5,8 @@ Install [conda](https://www.anaconda.com/docs/getting-started/miniconda/install#
 conda env create -f ont-env.yml
 ```
 
-## Environments
-Install an environment via `conda env create -f <env file>`
-* `ont-env`: Software needed for all ONT data analysis.
-* `hic-env`: Software needed for Hi-C/Micro-C analysis.
+## Environment
+Install the conda environment via `conda env create -f ont-env.yml`
 
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
