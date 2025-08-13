@@ -26,6 +26,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | Script  | Description |
 | ------------- | ------------- |
 | `scripts/hifiasm_assembly.sh`  | Assemble a `fastq` using `hifiasm`. |
+| `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. |
 | `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  |
 | [D-GENIES](https://dgenies.toulouse.inra.fr/run) | Not a script; UI used for generating dotplots from paired `fasta` |
 #### Herro Read Error Correction
