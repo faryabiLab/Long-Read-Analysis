@@ -45,7 +45,7 @@ done
 
 cmd="flye --nano-hq ${fastq} -o . -t ${threads} -g ${size}"
 
-echo ${cmd} > "${out_prefix}.align_assembly.cmd"
+echo ${cmd} > "${out_prefix}.Flye_assembly.cmd"
 
 eval ${cmd}
 
