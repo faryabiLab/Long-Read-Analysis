@@ -34,6 +34,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `scripts/hifiasm_assembly.sh`  | Assemble a `fastq` using `hifiasm`. |
 | `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. |
 | `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  |
+| `scripts/extract_bnd_reads.sh` | Extract split reads and reads providing context in flanking regions. |
 
 | Script  | Description |
 | ------------- | ------------- |
