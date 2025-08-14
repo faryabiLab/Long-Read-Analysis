@@ -17,6 +17,12 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `scripts/filter_reads_length.sh`  | Wraps `FiltLong` to filter out reads in the bottom 10% by length.  |
 | `scripts/nanoplot_run.sh` | Use `NanoPlot` to generate summary statistics for `fastq` |
 | `scripts/porechop_trim.sh` | Wraps `porechop` for adapter trimming. |
+#### Herro Read Error Correction
+| Script  | Description |
+| ------------- | ------------- |
+| `scripts/herro_preprocess.sh` | Runs the `herro` pipeline preprocessing step. | 
+| `scripts/herro_batch_align.sh` | Runs the `herro` batch alignment workflow. |
+| `scripts/herro_correct.sh` | Runs the `herro` read error correction pipeline. |
 #### Alignment
 | Script  | Description |
 | ------------- | ------------- |
@@ -29,12 +35,10 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. |
 | `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  |
 | [D-GENIES](https://dgenies.toulouse.inra.fr/run) | Not a script; UI used for generating dotplots from paired `fasta` |
-#### Herro Read Error Correction
+#### Structural Variant Discovery
 | Script  | Description |
 | ------------- | ------------- |
-| `scripts/herro_preprocess.sh` | Runs the `herro` pipeline preprocessing step. | 
-| `scripts/herro_batch_align.sh` | Runs the `herro` batch alignment workflow. |
-| `scripts/herro_correct.sh` | Runs the `herro` read error correction pipeline. |
+| `scripts/eaglec_bnds.sh` | Use `EagleC` to find structural variants from a 3C matrix in `.mcool` format. |
 #### Utilities / Miscellaneous
 | Script  | Description |
 | ------------- | ------------- |
