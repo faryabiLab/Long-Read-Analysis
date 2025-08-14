@@ -97,6 +97,79 @@ def build_mermaid(flow_edges: List[str]) -> str:
     out.append("```")
     return "\n".join(out)
 
+def write_per_directory_readmes(root: Path, spec: Dict[str, Any]) -> None:
+    """
+    Write a README.md into each directory defined in the DIRSPEC.
+
+    Each README includes:
+      - Stage ID and description
+      - Relative directory path
+      - Optional notes from DIRSPEC
+      - Allowed file patterns ('allow' list)
+      - Associated script (if provided)
+
+    Parameters
+    ----------
+    root : Path
+        The project root path where directories are created.
+    spec : dict
+        The loaded DIRSPEC YAML as a Python dictionary.
+    """
+    for sid, stage, d in iter_all_dirs(spec):
+        rel = d.get("path")
+        if not rel:
+            print(f"[WARN] No path specified in stage {sid}; skipping README.")
+            continue
+
+        dir_abs = root / rel
+        dir_abs.mkdir(parents=True, exist_ok=True)
+
+        stage_desc = (stage.get("desc") or "").strip()
+        notes = (d.get("notes") or "").strip()
+        allow = d.get("allow", [])
+        script = d.get("script")
+
+        # Build allow section
+        if allow and isinstance(allow, list):
+            allow_lines = "\n".join(f"- `{pat}`" for pat in allow)
+            allow_section = (
+                "### Allowed file patterns\n"
+                "Only files matching **any** of the glob patterns below are allowed:\n\n"
+                f"{allow_lines}\n\n"
+                "_Files not matching these patterns will be flagged by `--validate`._"
+            )
+        else:
+            allow_section = (
+                "### Allowed file patterns\n"
+                "No restrictions: **any files are allowed** here."
+            )
+
+        # Build script section
+        script_section = ""
+        if script:
+            script_section = (
+                "### Associated script\n"
+                f"This directory is associated with the script: `scripts/{script}`\n"
+                "If run from the standard project layout, this script is copied here automatically.\n"
+            )
+
+        # Compose README content
+        readme_md = f"""# {rel}
+
+        **Stage:** `{sid}`{f" — {stage_desc}" if stage_desc else ""}
+
+        This directory is defined in the project’s `DIRSPEC.yaml`.  
+        See the top-level [`DIRECTORY_STANDARD.md`](../DIRECTORY_STANDARD.md) for overall layout and flow.
+
+        {("### Notes\n" + notes + "\n") if notes else ""}{allow_section}
+
+        {script_section}
+        """
+
+        # Write README.md
+        (dir_abs / "README.md").write_text(readme_md, encoding="utf-8")
+
+
 def write_directory_standard_md(root: Path, spec: Dict[str, Any]) -> None:
     md = []
     title = "Directory Standard"
@@ -177,20 +250,23 @@ def create_scaffold(root: Path, spec: Dict[str, Any]) -> None:
             continue
 
         script = d.get("script")
-        if not script:
+        if script is None:
             print(f"[WARN] Skipping empty script in stage {sid}")
+            continue
 
         dir_abs = root / rel
         ensure_dir(dir_abs)  # make dir
 
-        if check_script_loc() and script:
+        if check_script_loc():
             script_path = Path("..") / "scripts" / script
-            shutil.copy(script_path, rel)
+            print(f"[INFO] Moving script {script_path} to {dir_abs} ")
+            shutil.copy(script_path, dir_abs)
         else:
             print(f"[WARN] Couldn't find script directory from current working dir, skipping copy.")
         # copy script to dir
     # Top-level docs + manifest
     write_directory_standard_md(root, spec)
+    write_per_directory_readmes(root, spec)
 
 # ------------------------------
 # CLI
