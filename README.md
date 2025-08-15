@@ -47,6 +47,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | Script  | Description |
 | ------------- | ------------- |
 | `scripts/parse_cigar.py` | Parse and plot CIGAR strings within a `sam` file. |
+| `scripts/alignment_summarry.sh` | Quickly get alignments of a contig after being aligned to a reference genome. |
 #### Project Structure / Directory Setup
 | Script  | Description |
 | ------------- | ------------- |
