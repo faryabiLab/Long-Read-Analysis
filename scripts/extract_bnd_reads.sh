@@ -91,7 +91,7 @@ echo '5: Extract the split read names from ${bam}'
 samtools view -@ ${threads} ${bam} | grep -wFf ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.txt > ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam
 
 echo '6: Create final bam with header and {out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam'
-cat ${out_prefix}_header.sam {out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam | samtools view -@ ${threads} -Sb - > {out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.bam
+cat ${out_prefix}_header.sam ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam | samtools view -@ ${threads} -Sb - > ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.bam
 "
 
 # Log and run
