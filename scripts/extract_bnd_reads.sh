@@ -90,10 +90,13 @@ samtools view -@ 4 -H ${bam} > ${out_prefix}_header.sam
 echo '5: Extract the split read names from ${bam}'
 samtools view -@ ${threads} ${bam} | grep -wFf ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.txt > ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam
 
-echo '6: Create final bam with header and {out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam'
+echo '6: Create final bam with header and ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam'
 cat ${out_prefix}_header.sam ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam | samtools view -@ ${threads} -Sb - > ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.bam
+
+echo '7: Convert final bam to fastq ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.fastq'
+samtools fastq ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.fastq ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.bam
 "
 
 # Log and run
-echo "$cmd" > "${out_prefix}.extract_split_reads.cmd"
+echo "$cmd" > "${out_prefix}.extract_bnd_reads.cmd"
 eval "${cmd}"
