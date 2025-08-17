@@ -35,6 +35,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. |
 | `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  |
 | `scripts/extract_bnd_reads.sh` | Extract split reads and reads providing context in flanking regions. |
+| `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. |
 
 | Script  | Description |
 | ------------- | ------------- |
