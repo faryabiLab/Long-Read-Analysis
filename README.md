@@ -49,7 +49,8 @@ This section highlights the analysis scripts in this repository, broken down by 
 | ------------- | ------------- |
 | `scripts/parse_cigar.py` | Parse and plot CIGAR strings within a `sam` file. |
 | `scripts/alignment_summarry.sh` | Quickly get alignments of a contig after being aligned to a reference genome. |
-| `sctipts/make_bnd_seq.sh`  |  Concatenate 2 sequences from a reference fasta file as given coordinates. |
+| `sctipts/make_bnd_seq.sh`  |  Subsequence 2 sequences from a reference fasta file as given coordinates, returning them as separate `fasta` entries in a single file. |
+| `sctipts/make_bnd_seq_concat.sh`  |  Concatenate 2 sequences from a reference fasta file as given coordinates, returning them as a single `fasta` entry. |
 #### Project Structure / Directory Setup
 | Script  | Description |
 | ------------- | ------------- |
