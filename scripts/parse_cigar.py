@@ -30,7 +30,7 @@ def summarize_sam_cigars(sam_file):
             parsed = parse_cigar_segments(cigar)  # ordered list of tuples
             plot_cigar(parsed, qname, ref_seq, ref_pos)
             parsed_str = " ".join([f"{n}{op}" for op, n in parsed])
-            print(f"{qname}\t{ref_seq}\t{ref_pos}")
+            print(f"{qname}\t{ref_seq}\t{ref_pos}\t{parsed_str}")
 
 def plot_cigar(cigar_tuples, qname, ref_seq, ref_pos, ax=None):
     color_map = {
