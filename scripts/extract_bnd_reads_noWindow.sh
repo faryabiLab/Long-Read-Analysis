@@ -20,7 +20,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 bam=""
-threads=1
+threads=24
 window=1000000
 output_prefix=""
 b1=""
@@ -69,27 +69,20 @@ echo "Extracting reads from ${chr1}:${start1}-${end1} and ${chr2}:${start2}-${en
 
 cmd="
 echo '1: Extract ${chr1}:${start1}-${end1} from ${bam}'
-samtools view -@ ${threads} -F 4 $bam ${chr1}:${start1}-${end1} | cut -f1 | sort | uniq > ${out_prefix}_${chr1}_reads.txt
+samtools view -@ ${threads} -F 4 -b $bam ${chr1}:${start1}-${end1} > tmp_${chr1}_aln.bam 
 
 echo '2: Extract ${chr2}:${start2}-${end2} from ${bam}'
-samtools view -@ ${threads} -F 4 $bam ${chr2}:${start2}-${end2} | cut -f1 | sort | uniq > ${out_prefix}_${chr2}_reads.txt
+samtools view -@ ${threads} -F 4 -b $bam ${chr2}:${start2}-${end2} > tmp_${chr2}_aln.bam
 
-echo '3: Find common read names'
-cat ${out_prefix}_${chr1}_reads.txt ${out_prefix}_${chr2}_reads.txt | sort -u > ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.txt
+echo '3: Merge temp bams'
+samtools merge -@ ${threads} -o ${out_prefix}.bam tmp_${chr1}_aln.bam tmp_${chr2}_aln.bam
 
-echo '4: Extract header from ${bam}'
-samtools view -@ 4 -H ${bam} > ${out_prefix}_header.sam
+echo '4: Convert final bam to fastq ${out_prefix}_${chr1}${chr2}.fastq'
+samtools fastq  ${out_prefix}.bam > ${out_prefix}_${chr1}${chr2}.fastq
 
-echo '5: Extract the split read names from ${bam}'
-samtools view -@ ${threads} ${bam} | grep -wFf ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.txt > ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam
-
-echo '6: Create final bam with header and ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam'
-cat ${out_prefix}_header.sam ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.sam | samtools view -@ ${threads} -Sb - > ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.bam
-
-echo '7: Convert final bam to fastq ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.fastq'
-samtools fastq ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.fastq ${out_prefix}_all_window_reads_${chr1}-${chr2}_${window}.bam
+rm tmp_${chr1}_aln.bam tmp_${chr2}_aln.bam
 "
 
 # Log and run
-echo "$cmd" > "${out_prefix}.extract_bnd_reads.cmd"
+echo "$cmd" > "${out_prefix}.extract_bnd_reads_noWindow.cmd"
 eval "${cmd}"
