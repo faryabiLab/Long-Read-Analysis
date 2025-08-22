@@ -80,6 +80,9 @@ samtools merge -@ ${threads} -o ${out_prefix}.bam tmp_${chr1}_aln.bam tmp_${chr2
 echo '4: Convert final bam to fastq ${out_prefix}_${chr1}${chr2}.fastq'
 samtools fastq  ${out_prefix}.bam > ${out_prefix}_${chr1}${chr2}.fastq
 
+echo '5: gzip result fastq'
+pigz ${out_prefix}_${chr1}${chr2}.fastq
+
 rm tmp_${chr1}_aln.bam tmp_${chr2}_aln.bam
 "
 
