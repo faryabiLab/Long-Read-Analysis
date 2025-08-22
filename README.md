@@ -1,12 +1,10 @@
-# Long-Read-Analysis
 ## Usage
-Install [conda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-2) and activate the appropriate environment via:
-```
-conda env create -f ont-env.yml
-```
+These scripts are designed to enable the user to reproduce results from this project. \
+
 
 ## Environment
-Install the conda environment via `conda env create -f ont-env.yml`
+Install the conda environment via `conda env create -f ont-env.yml`. \
+A list of software dependencies and versions for this project can be found in `envs/ont-env.pkg.ver`.
 
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
