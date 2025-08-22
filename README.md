@@ -45,6 +45,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | Script  | Description |
 | ------------- | ------------- |
 | `scripts/eaglec_bnds.sh` | Use `EagleC` to find structural variants from a 3C matrix in `.mcool` format. |
+| `scripts/spectre_cnv.sh` | Calculate & plot copy number information with `spectre` |
 #### Utilities / Miscellaneous
 | Script  | Description |
 | ------------- | ------------- |
