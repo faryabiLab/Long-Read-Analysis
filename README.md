@@ -45,6 +45,10 @@ This section highlights the analysis scripts in this repository, broken down by 
 | ------------- | ------------- |
 | `scripts/eaglec_bnds.sh` | Use `EagleC` to find structural variants from a 3C matrix in `.mcool` format. |
 | `scripts/spectre_cnv.sh` | Calculate & plot copy number information with `spectre` |
+#### Assembly Annotation
+| Script  | Description |
+| ------------- | ------------- |
+| `scripts/liftoff_gene_annotations.sh` | USe a reference `.gtf` and `.fasta` to annotate gene sequences in assembly `.fasta` |
 #### Utilities / Miscellaneous
 | Script  | Description |
 | ------------- | ------------- |
