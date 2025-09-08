@@ -1,10 +1,13 @@
-## Usage
-These scripts are designed to enable the user to reproduce results from this project. \
+This repository stores conda environment manifests and scripts necessary for Whole-Genome Long Read Sequencing data, specifically Oxford Nanopore Technologies (ONT).
 
-
-## Environment
-Install the conda environment via `conda env create -f ont-env.yml`. \
-A list of software dependencies and versions for this project can be found in `envs/ont-env.pkg.ver`.
+## Environments
+Use `conda` to set up compute environments for the scripts below. \
+Available environments:
+| Environment  | Description |
+| ------------- | ------------- |
+| `envs/ont-env.yml` | Long read analysis-specific software |
+| `envs/hic_process.yml` | HiC/MicroC alignment and processing with Juicer. |
+| `envs/eaglec.yml` | Structural variant detection from HiC contact matrices with EagleC. |
 
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
