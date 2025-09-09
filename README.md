@@ -67,7 +67,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 * Upload track files in `data/JBrowse_Sessions`  to view alignments.
 
 ## Tool List
-All of the necessary dependencies are available as conda environments in `envs/`
+All tools below are available as conda environments in `envs/`.
 * Seqkit
   * Manipulating sequence files   
   * https://bioinf.shenwei.me/seqkit/
@@ -81,7 +81,7 @@ All of the necessary dependencies are available as conda environments in `envs/`
   * Detect and remove adapter sequences from long reads 
   * https://github.com/rrwick/Porechop
 * Dorado
-  * Nanopore suite, including `align` function that uses `minimap2`: 
+  * Nanopore suite, including `align` function that uses `minimap2`
   * https://github.com/nanoporetech/dorado
   * `minimap2`
     * Standard aligner for ONT data 
