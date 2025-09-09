@@ -64,7 +64,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `scripts/gfa_to_fasta.sh` | Convert a `gfa` file to a `fasta` file with `gfatools` |
 ## Browsers
 **[JBrowse2](https://jbrowse.org/jb2/)**
-* Upload `bam` and `.bai` to view long-read alignnments.
+* Upload track files in `data/JBrowse_Sessions`  to view alignments.
 
 ## Tool List
 All of the necessary dependencies are available as conda environments in `envs/`
