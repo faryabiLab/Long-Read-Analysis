@@ -101,4 +101,6 @@ All of the necessary dependencies are available as conda environments in `envs/`
 * Spectre
   * Compute copy number variation from sequencing depth
   * https://github.com/fritzsedlazeck/Spectre       
-
+* Liftoff
+  * Lift over genes from a reference sequence to an assembled / target sequence
+  * https://github.com/agshumate/Liftoff 
