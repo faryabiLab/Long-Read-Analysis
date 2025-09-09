@@ -31,7 +31,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 | ------------- | ------------- | ---------- |
 | `scripts/align_ont_dorado.sh`  | Align ONT `fastq` with `dorado align`. | Dorado (`minimap2`) |
 | `scripts/align_contigs_to_ref.sh`  | Wraps `minimap2`, used to align assembled contigs to reference sequence.  | `minimap2` |
-### Alignment Extraction
+#### Alignment Extraction
 | Script  | Description | Tool(s)
 | ------------- | ------------- | ---------- |
 | `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  | `samtools` |
