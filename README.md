@@ -14,12 +14,12 @@ Install and activate any of these with the command `conda env create -f <env.yml
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
 #### Quality Control / Filtering
-| Script  | Description |
-| ------------- | ------------- |
-| `scripts/seqkit_stats.sh`  | Simple wrapper of `seqkit stats` command to get assembly statistics like average length and N50.  |
-| `scripts/filter_reads_length.sh`  | Wraps `FiltLong` to filter out reads in the bottom 10% by length.  |
-| `scripts/nanoplot_run.sh` | Use `NanoPlot` to generate summary statistics for `fastq` |
-| `scripts/porechop_trim.sh` | Wraps `porechop` for adapter trimming. |
+| Script  | Description | Tool(s) 
+| ------------- | ------------- | ------- |
+| `scripts/seqkit_stats.sh`  | Simple wrapper of `seqkit stats` command to get assembly statistics like average length and N50.  | `seqkit` |
+| `scripts/filter_reads_length.sh`  | Wraps `FiltLong` to filter out reads in the bottom 10% by length.  | `FiltLong` |
+| `scripts/nanoplot_run.sh` | Use `NanoPlot` to generate summary statistics for `fastq` | `NanoPlot` |
+| `scripts/porechop_trim.sh` | Wraps `porechop` for adapter trimming. | `porechop` |
 #### Herro Read Error Correction
 | Script  | Description |
 | ------------- | ------------- |
@@ -27,33 +27,33 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `scripts/herro_batch_align.sh` | Runs the `herro` batch alignment workflow. |
 | `scripts/herro_correct.sh` | Runs the `herro` read error correction pipeline. |
 #### Alignment
-| Script  | Description |
-| ------------- | ------------- |
-| `scripts/align_ont_dorado.sh`  | Align ONT `fastq` with `dorado align`. |
-| `scripts/align_contigs_to_ref.sh`  | Wraps `minimap2`, used to align assembled contigs to reference sequence.  |
+| Script  | Description | Tool(s)
+| ------------- | ------------- | ---------- |
+| `scripts/align_ont_dorado.sh`  | Align ONT `fastq` with `dorado align`. | Dorado (`minimap2`) |
+| `scripts/align_contigs_to_ref.sh`  | Wraps `minimap2`, used to align assembled contigs to reference sequence.  | `minimap2` |
 #### Assembly
-| Script  | Description |
-| ------------- | ------------- |
-| `scripts/hifiasm_assembly.sh`  | Assemble a `fastq` using `hifiasm`. |
-| `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. |
-| `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  |
+| Script  | Description | Tool(s) 
+| ------------- | ------------- | ------- |
+| `scripts/hifiasm_assembly.sh`  | Assemble a `fastq` using `hifiasm`. | `HiFiasm` |
+| `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. | `Flye` | 
+| `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  | `samtools` |
 | `scripts/extract_bnd_reads.sh` | Extract split reads and reads providing context in flanking regions. |
-| `scripts/extract_bnd_reads_noWindow.sh` | Extract split reads by specifying chromosomal start and end coordinates, no window needed. |
-| `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. |
-| `scripts/ragtag_scaffold.sh` | Scaffold conntigs together with RagTag. |
+| `scripts/extract_bnd_reads_noWindow.sh` | Extract split reads by specifying chromosomal start and end coordinates, no window needed. | `samtools` |
+| `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. | `samtools` |
+| `scripts/ragtag_scaffold.sh` | Scaffold conntigs together with RagTag. | `RagTag` |
 
-| Script  | Description |
+| Tool  | Description |
 | ------------- | ------------- |
-| [D-GENIES](https://dgenies.toulouse.inra.fr/run) | Not a script; UI used for generating dotplots from paired `fasta` |
+| [D-GENIES](https://dgenies.toulouse.inra.fr/run) | UI used for generating dotplots from paired `fasta` |
 #### Structural Variant Discovery
-| Script  | Description |
-| ------------- | ------------- |
-| `scripts/eaglec_bnds.sh` | Use `EagleC` to find structural variants from a 3C matrix in `.mcool` format. |
-| `scripts/spectre_cnv.sh` | Calculate & plot copy number information with `spectre` |
+| Script  | Description | Tool(s) 
+| ------------- | ------------- | -------- |
+| `scripts/eaglec_bnds.sh` | Find structural variants from a 3C matrix in `.mcool` format. | `EagleC` |
+| `scripts/spectre_cnv.sh` | Calculate & plot copy number information from read depth. | `spectre` |
 #### Assembly Annotation
-| Script  | Description |
-| ------------- | ------------- |
-| `scripts/liftoff_gene_annotations.sh` | USe a reference `.gtf` and `.fasta` to annotate gene sequences in assembly `.fasta` |
+| Script  | Description | Tool(s)
+| ------------- | ------------- | -------- |
+| `scripts/liftoff_gene_annotations.sh` | USe a reference `.gtf` and `.fasta` to annotate gene sequences in assembly `.fasta` | `Liftoff` |
 #### Utilities / Miscellaneous
 | Script  | Description |
 | ------------- | ------------- |
