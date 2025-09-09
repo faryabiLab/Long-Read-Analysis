@@ -1,0 +1,597 @@
+{
+  "configuration": {
+    "rpc": {
+      "defaultDriver": "WebWorkerRpcDriver",
+      "drivers": {
+        "MainThreadRpcDriver": {},
+        "WebWorkerRpcDriver": {}
+      }
+    },
+    "logoPath": {
+      "locationType": "UriLocation",
+      "uri": ""
+    }
+  },
+  "plugins": [],
+  "assemblies": [
+    {
+      "name": "hg38",
+      "aliases": [
+        "GRCh38"
+      ],
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "P6R5xbRqRr",
+        "adapter": {
+          "type": "BgzipFastaAdapter",
+          "fastaLocation": {
+            "locationType": "UriLocation",
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz"
+          },
+          "faiLocation": {
+            "locationType": "UriLocation",
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz.fai"
+          },
+          "metadataLocation": {
+            "locationType": "UriLocation",
+            "uri": "/path/to/fa.metadata.yaml"
+          },
+          "gziLocation": {
+            "locationType": "UriLocation",
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz.gzi"
+          }
+        },
+        "displays": [
+          {
+            "type": "LinearReferenceSequenceDisplay",
+            "displayId": "P6R5xbRqRr-LinearReferenceSequenceDisplay"
+          },
+          {
+            "type": "LinearGCContentDisplay",
+            "displayId": "P6R5xbRqRr-LinearGCContentDisplay"
+          }
+        ]
+      },
+      "refNameAliases": {
+        "adapter": {
+          "type": "RefNameAliasAdapter",
+          "location": {
+            "locationType": "UriLocation",
+            "uri": "https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/hg38_aliases.txt"
+          }
+        }
+      },
+      "cytobands": {
+        "adapter": {
+          "type": "CytobandAdapter",
+          "cytobandLocation": {
+            "locationType": "UriLocation",
+            "uri": "https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/cytoBand.txt"
+          }
+        }
+      },
+      "displayName": "Homo sapiens (hg38)"
+    }
+  ],
+  "tracks": [
+    {
+      "type": "FeatureTrack",
+      "trackId": "repeats_hg38",
+      "name": "Repeats",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "BigBedAdapter",
+        "bigBedLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://jbrowse.org/genomes/GRCh38/repeats.bb"
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "repeats_hg38-LinearBasicDisplay"
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "repeats_hg38-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "gencode_nclist_hg38",
+      "name": "Gencode v32",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "NCListAdapter",
+        "rootUrlTemplate": {
+          "locationType": "UriLocation",
+          "uri": "https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/gencode/{refseq}/trackData.jsonz"
+        },
+        "refNames": [
+          "chr1",
+          "chr2",
+          "chr3",
+          "chr4",
+          "chr5",
+          "chr6",
+          "chr7",
+          "chr8",
+          "chr9",
+          "chr10",
+          "chr11",
+          "chr12",
+          "chr13",
+          "chr14",
+          "chr15",
+          "chr16",
+          "chr17",
+          "chr18",
+          "chr19",
+          "chr20",
+          "chr21",
+          "chr22",
+          "chr23",
+          "chrX",
+          "chrY",
+          "chrMT"
+        ]
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "gencode_nclist_hg38_linear",
+          "renderer": {
+            "type": "SvgFeatureRenderer",
+            "labels": {
+              "description": "jexl:get(feature,'gene_name')"
+            }
+          }
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "gencode_nclist_hg38-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "clinvar_cnv_hg38",
+      "name": "Clinvar CNV",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "BigBedAdapter",
+        "bigBedLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://hgdownload.soe.ucsc.edu/gbdb/hg38/bbi/clinvar/clinvarCnv.bb"
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "clinvar_cnv_hg38-LinearBasicDisplay"
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "clinvar_cnv_hg38-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "clinvar_hg38",
+      "name": "Clinvar variants",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "BigBedAdapter",
+        "bigBedLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://hgdownload.soe.ucsc.edu/gbdb/hg38/bbi/clinvar/clinvarMain.bb"
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "clinvar_hg38-LinearBasicDisplay"
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "clinvar_hg38-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "mane_hg38",
+      "name": "MANE 0.92",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "BigBedAdapter",
+        "bigBedLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://hgdownload.soe.ucsc.edu/gbdb/hg38/mane/mane.0.92.bb"
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "mane_hg38_linear",
+          "renderer": {
+            "type": "SvgFeatureRenderer",
+            "labels": {
+              "description": "jexl:get(feature,'geneName2')"
+            }
+          }
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "mane_hg38-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "gdc_features",
+      "name": "GDC Cancer",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "BigBedAdapter",
+        "bigBedLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://hgdownload.soe.ucsc.edu/gbdb/hg38/gdcCancer/gdcCancer.bb"
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "gdc_features-LinearBasicDisplay"
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "gdc_features-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "hg38_gaps",
+      "name": "Gaps",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "BigBedAdapter",
+        "bigBedLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://jbrowse.org/genomes/GRCh38/gaps.bb"
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "hg38_gaps-LinearBasicDisplay"
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "hg38_gaps-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "gencode.v36.annotation.sort.gff3",
+      "name": "Gencode v36",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/gencode/gencode.v36.annotation.sort.gff3.gz"
+        },
+        "index": {
+          "location": {
+            "locationType": "UriLocation",
+            "uri": "https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/gencode/gencode.v36.annotation.sort.gff3.gz.tbi"
+          }
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "gencode.v36.annotation.sort.gff3-LinearBasicDisplay"
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "gencode.v36.annotation.sort.gff3-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "ncbi_refseq_109_hg38_latest",
+      "name": "NCBI RefSeq",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "category": [
+        "Annotation"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/ncbi_refseq/GRCh38_latest_genomic.sort.gff.gz"
+        },
+        "index": {
+          "location": {
+            "locationType": "UriLocation",
+            "uri": "https://s3.amazonaws.com/jbrowse.org/genomes/GRCh38/ncbi_refseq/GRCh38_latest_genomic.sort.gff.gz.tbi"
+          }
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearBasicDisplay",
+          "displayId": "ncbi_refseq_109_hg38_latest-LinearBasicDisplay"
+        },
+        {
+          "type": "LinearArcDisplay",
+          "displayId": "ncbi_refseq_109_hg38_latest-LinearArcDisplay"
+        }
+      ]
+    },
+    {
+      "type": "AlignmentsTrack",
+      "trackId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638",
+      "name": "20250609_ONT_PBE71235_Rec1_10KB_combined_trimmed.bam",
+      "assemblyNames": [
+        "hg38"
+      ],
+      "adapter": {
+        "type": "BamAdapter",
+        "bamLocation": {
+          "locationType": "UriLocation",
+          "uri": "https://aries.faryabilab.com/noah/ONT_bam/20250609_ONT_PBE71235_Rec1_10KB_combined_trimmed.bam"
+        },
+        "index": {
+          "location": {
+            "locationType": "UriLocation",
+            "uri": "https://aries.faryabilab.com/noah/ONT_bam/20250609_ONT_PBE71235_Rec1_10KB_combined_trimmed.bam.bai"
+          }
+        },
+        "sequenceAdapter": {
+          "type": "BgzipFastaAdapter",
+          "fastaLocation": {
+            "locationType": "UriLocation",
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz"
+          },
+          "faiLocation": {
+            "locationType": "UriLocation",
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz.fai"
+          },
+          "metadataLocation": {
+            "locationType": "UriLocation",
+            "uri": "/path/to/fa.metadata.yaml"
+          },
+          "gziLocation": {
+            "locationType": "UriLocation",
+            "uri": "https://jbrowse.org/genomes/GRCh38/fasta/hg38.prefix.fa.gz.gzi"
+          }
+        }
+      },
+      "displays": [
+        {
+          "type": "LinearAlignmentsDisplay",
+          "displayId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearAlignmentsDisplay"
+        },
+        {
+          "type": "LinearPileupDisplay",
+          "displayId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearPileupDisplay"
+        },
+        {
+          "type": "LinearSNPCoverageDisplay",
+          "displayId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearSNPCoverageDisplay"
+        },
+        {
+          "type": "LinearReadArcsDisplay",
+          "displayId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearReadArcsDisplay"
+        },
+        {
+          "type": "LinearReadCloudDisplay",
+          "displayId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearReadCloudDisplay"
+        }
+      ]
+    }
+  ],
+  "internetAccounts": [
+    {
+      "type": "DropboxOAuthInternetAccount",
+      "internetAccountId": "dropboxOAuth",
+      "name": "Dropbox",
+      "description": "Account to access Dropbox files",
+      "clientId": "ykjqg1kr23pl1i7"
+    },
+    {
+      "type": "GoogleDriveOAuthInternetAccount",
+      "internetAccountId": "googleOAuth",
+      "name": "Google Drive",
+      "description": "Account to access Google Drive files",
+      "clientId": "109518325434-m86s8a5og8ijc5m6n7n8dk7e9586bg9i.apps.googleusercontent.com"
+    }
+  ],
+  "aggregateTextSearchAdapters": [
+    {
+      "type": "TrixTextSearchAdapter",
+      "textSearchAdapterId": "hg38-index",
+      "ixFilePath": {
+        "locationType": "UriLocation",
+        "uri": "https://jbrowse.org/genomes/GRCh38/trix/hg38.ix"
+      },
+      "ixxFilePath": {
+        "locationType": "UriLocation",
+        "uri": "https://jbrowse.org/genomes/GRCh38/trix/hg38.ixx"
+      },
+      "metaFilePath": {
+        "locationType": "UriLocation",
+        "uri": "https://jbrowse.org/genomes/GRCh38/trix/meta.json"
+      },
+      "assemblyNames": [
+        "hg38"
+      ]
+    }
+  ],
+  "connections": [],
+  "defaultSession": {
+    "connectionInstances": [],
+    "drawerPosition": "right",
+    "drawerWidth": 384,
+    "widgets": {
+      "GridBookmark": {
+        "id": "GridBookmark",
+        "type": "GridBookmarkWidget"
+      },
+      "hierarchicalTrackSelector": {
+        "id": "hierarchicalTrackSelector",
+        "type": "HierarchicalTrackSelectorWidget",
+        "view": "ZYs-VUY-cHCu8xU_kaHxS",
+        "faceted": {
+          "filterText": "",
+          "showSparse": false,
+          "showFilters": true,
+          "showOptions": false,
+          "panelWidth": 400
+        }
+      },
+      "addTrackWidget": {
+        "id": "addTrackWidget",
+        "type": "AddTrackWidget",
+        "view": "ZYs-VUY-cHCu8xU_kaHxS"
+      }
+    },
+    "activeWidgets": {
+      "hierarchicalTrackSelector": "hierarchicalTrackSelector"
+    },
+    "minimized": false,
+    "id": "qgye5QygJH8KlFun7y4cA",
+    "name": "New session 9/9/2025, 12:55:57 PM",
+    "margin": 0,
+    "views": [
+      {
+        "id": "ZYs-VUY-cHCu8xU_kaHxS",
+        "minimized": false,
+        "type": "LinearGenomeView",
+        "offsetPx": 5521551,
+        "bpPerPx": 16.83211157578442,
+        "displayedRegions": [
+          {
+            "reversed": false,
+            "refName": "1",
+            "start": 0,
+            "end": 248956422,
+            "assemblyName": "hg38"
+          }
+        ],
+        "tracks": [
+          {
+            "id": "hFuc1xmegh-YVI4Men8LR",
+            "type": "AlignmentsTrack",
+            "configuration": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638",
+            "minimized": false,
+            "pinned": false,
+            "displays": [
+              {
+                "id": "YlzlNyLRXRf-aB7YhCCoK",
+                "type": "LinearAlignmentsDisplay",
+                "PileupDisplay": {
+                  "id": "zQfJfpcbgR5dyW2HzS2cr",
+                  "type": "LinearPileupDisplay",
+                  "heightPreConfig": 205,
+                  "userByteSizeLimit": 25657138,
+                  "configuration": {
+                    "type": "LinearPileupDisplay",
+                    "displayId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearAlignmentsDisplay_LinearPileupDisplay_xyz"
+                  },
+                  "jexlFilters": [],
+                  "showSoftClipping": false
+                },
+                "SNPCoverageDisplay": {
+                  "id": "ncWUP5N9nzlBRU9EXhaLX",
+                  "type": "LinearSNPCoverageDisplay",
+                  "heightPreConfig": 45,
+                  "userByteSizeLimit": 25657138,
+                  "configuration": {
+                    "type": "LinearSNPCoverageDisplay",
+                    "displayId": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearAlignmentsDisplay_snpcoverage_xyz"
+                  },
+                  "selectedRendering": "",
+                  "resolution": 1,
+                  "constraints": {},
+                  "jexlFilters": []
+                },
+                "snpCovHeight": 45,
+                "configuration": "20250609_ont_pbe71235_rec1_10kb_combined_trimmed.bam-1757441227638-LinearAlignmentsDisplay",
+                "lowerPanelType": "LinearPileupDisplay"
+              }
+            ]
+          }
+        ],
+        "hideHeader": false,
+        "hideHeaderOverview": false,
+        "hideNoTracksActive": false,
+        "trackSelectorType": "hierarchical",
+        "showCenterLine": false,
+        "showCytobandsSetting": true,
+        "trackLabels": "",
+        "showGridlines": true,
+        "highlight": [],
+        "colorByCDS": false,
+        "showTrackOutlines": true,
+        "bookmarkHighlightsVisible": true,
+        "bookmarkLabelsVisible": true
+      }
+    ],
+    "stickyViewHeaders": true,
+    "sessionAssemblies": [],
+    "temporaryAssemblies": [],
+    "focusedViewId": "ZYs-VUY-cHCu8xU_kaHxS"
+  },
+  "preConfiguredSessions": []
+}
