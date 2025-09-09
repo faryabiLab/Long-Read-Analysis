@@ -14,7 +14,7 @@ Install and activate any of these with
 conda env create -f <env.yml>
 conda activate <env>
 ```
-
+**Note:** The name of each environment is the filename without `.yml`.
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
 #### Quality Control / Filtering
