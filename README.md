@@ -74,38 +74,43 @@ All tools below are available as conda environments in `envs/`.
 * Seqkit
   * Manipulating sequence files   
   * https://bioinf.shenwei.me/seqkit/
-* FiltLong
-  * Filter long read `fastq` 
-  * https://github.com/rrwick/Filtlong
-* NanoPlot
-  * Plot numerous QC metrics for ONT data 
-  * https://github.com/wdecoster/NanoPlot
-* Porechop
-  * Detect and remove adapter sequences from long reads 
-  * https://github.com/rrwick/Porechop
-* Dorado
-  * Nanopore suite, including `align` function that uses `minimap2`
-  * https://github.com/nanoporetech/dorado
-  * `minimap2`
-    * Standard aligner for ONT data 
-    * https://github.com/lh3/minimap2
-* HiFiasm
-  * Haplotype-aware assembler built for HiFi data, but used with `--ont` option 
-  * https://hifiasm.readthedocs.io/en/latest/
-* Flye
-  * Non-haplotype specific genome assembler  
-  * https://github.com/mikolmogorov/Flye
-* RagTag
-  * Builds scaffolds from disjoint contigs 
-  * https://github.com/malonge/RagTag
-* EagleC
-  * Detect structural variations from a HiC contact matrix 
-  * https://github.com/XiaoTaoWang/EagleC
-* Spectre
-  * Compute copy number variation from sequencing depth
-  * https://github.com/fritzsedlazeck/Spectre       
-* Liftoff
-  * Lift over genes from a reference sequence to an assembled / target sequence
-  * https://github.com/agshumate/Liftoff 
+* Quality Control
+  * FiltLong
+    * Filter long read `fastq` 
+    * https://github.com/rrwick/Filtlong
+  * NanoPlot
+    * Plot numerous QC metrics for ONT data 
+    * https://github.com/wdecoster/NanoPlot
+  * Porechop
+    * Detect and remove adapter sequences from long reads 
+    * https://github.com/rrwick/Porechop
+* Alignment
+  * Dorado
+    * Nanopore suite, including `align` function that uses `minimap2`
+    * https://github.com/nanoporetech/dorado
+    * `minimap2`
+      * Standard aligner for ONT data 
+      * https://github.com/lh3/minimap2
+* Assembly
+  * HiFiasm
+    * Haplotype-aware assembler built for HiFi data, but used with `--ont` option 
+    * https://hifiasm.readthedocs.io/en/latest/
+  * Flye
+    * Non-haplotype specific genome assembler  
+    * https://github.com/mikolmogorov/Flye
+  * RagTag
+    * Builds scaffolds from disjoint contigs 
+    * https://github.com/malonge/RagTag
+* SV Detection
+  * EagleC
+    * Detect structural variations from a HiC contact matrix 
+    * https://github.com/XiaoTaoWang/EagleC
+  * Spectre
+    * Compute copy number variation from sequencing depth
+    * https://github.com/fritzsedlazeck/Spectre
+* Genome Annotation       
+  * Liftoff
+    * Lift over genes from a reference sequence to an assembled / target sequence
+    * https://github.com/agshumate/Liftoff 
 
 More tools can be found on [Long-Read-Tools](https://long-read-tools.org/index.html).
