@@ -107,3 +107,5 @@ All tools below are available as conda environments in `envs/`.
 * Liftoff
   * Lift over genes from a reference sequence to an assembled / target sequence
   * https://github.com/agshumate/Liftoff 
+
+More tools can be found on [Long-Read-Tools](https://long-read-tools.org/index.html).
