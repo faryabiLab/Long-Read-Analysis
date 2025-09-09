@@ -9,7 +9,11 @@ Available environments:
 | `envs/hic_process.yml` | HiC/MicroC alignment and processing with Juicer. |
 | `envs/eaglec.yml` | Structural variant detection from HiC contact matrices with EagleC. |
 
-Install and activate any of these with the command `conda env create -f <env.yml>`.
+Install and activate any of these with
+```
+conda env create -f <env.yml>
+conda activate <env>
+```
 
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
