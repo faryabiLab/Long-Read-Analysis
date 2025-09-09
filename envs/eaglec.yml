@@ -1,4 +1,4 @@
-name: EagleC
+name: eaglec
 channels:
   - conda-forge
   - bioconda
