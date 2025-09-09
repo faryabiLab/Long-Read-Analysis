@@ -66,5 +66,28 @@ This section highlights the analysis scripts in this repository, broken down by 
 **[JBrowse2](https://jbrowse.org/jb2/)**
 * Upload `bam` and `.bai` to view long-read alignnments.
 
-
+## Tool List
+All of the necessary dependencies are available as conda environments in `envs/`
+* Seqkit
+  * https://bioinf.shenwei.me/seqkit/
+* FiltLong
+  * https://github.com/rrwick/Filtlong
+* NanoPlot
+  * https://github.com/wdecoster/NanoPlot
+* Porechop
+  * https://github.com/rrwick/Porechop
+* Dorado 
+  * https://github.com/nanoporetech/dorado
+  * `minimap2`
+    * https://github.com/lh3/minimap2
+* HiFiasm
+  * https://hifiasm.readthedocs.io/en/latest/
+* Flye
+  * https://github.com/mikolmogorov/Flye
+* RagTag
+  * https://github.com/malonge/RagTag
+* EagleC
+  * https://github.com/XiaoTaoWang/EagleC
+* Spectre
+  * https://github.com/fritzsedlazeck/Spectre       
 
