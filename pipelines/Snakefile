@@ -1,4 +1,0 @@
-from snakemake.utils import min_version
-
-rule all:
-	
