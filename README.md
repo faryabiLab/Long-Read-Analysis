@@ -62,12 +62,9 @@ This section highlights the analysis scripts in this repository, broken down by 
 | `sctipts/make_bnd_seq.sh`  |  Subsequence 2 sequences from a reference fasta file as given coordinates, returning them as separate `fasta` entries in a single file. |
 | `sctipts/make_bnd_seq_concat.sh`  |  Concatenate 2 sequences from a reference fasta file as given coordinates, returning them as a single `fasta` entry. |
 | `scripts/gfa_to_fasta.sh` | Convert a `gfa` file to a `fasta` file with `gfatools` |
-#### Project Structure / Directory Setup
-| Script  | Description |
-| ------------- | ------------- |
-| `project_structure/make_dir_structure.sh` | Create the standardized production data folder structure for these analyses. |
-| `project_structure/generator.py` | Set up the project directory structure with additional metadata and logging. |
-
+## Browsers
+**[JBrowse2](https://jbrowse.org/jb2/)**
+* Upload `bam` and `.bai` to view long-read alignnments.
 
 
 
