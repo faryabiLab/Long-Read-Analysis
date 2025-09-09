@@ -31,15 +31,18 @@ This section highlights the analysis scripts in this repository, broken down by 
 | ------------- | ------------- | ---------- |
 | `scripts/align_ont_dorado.sh`  | Align ONT `fastq` with `dorado align`. | Dorado (`minimap2`) |
 | `scripts/align_contigs_to_ref.sh`  | Wraps `minimap2`, used to align assembled contigs to reference sequence.  | `minimap2` |
+### Alignment Extraction
+| Script  | Description | Tool(s)
+| ------------- | ------------- | ---------- |
+| `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  | `samtools` |
+| `scripts/extract_bnd_reads.sh` | Extract split reads and reads providing context in flanking regions. |
+| `scripts/extract_bnd_reads_noWindow.sh` | Extract split reads by specifying chromosomal start and end coordinates, no window needed. | `samtools` |
+| `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. | `samtools` |
 #### Assembly
 | Script  | Description | Tool(s) 
 | ------------- | ------------- | ------- |
 | `scripts/hifiasm_assembly.sh`  | Assemble a `fastq` using `hifiasm`. | `HiFiasm` |
 | `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. | `Flye` | 
-| `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  | `samtools` |
-| `scripts/extract_bnd_reads.sh` | Extract split reads and reads providing context in flanking regions. |
-| `scripts/extract_bnd_reads_noWindow.sh` | Extract split reads by specifying chromosomal start and end coordinates, no window needed. | `samtools` |
-| `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. | `samtools` |
 | `scripts/ragtag_scaffold.sh` | Scaffold conntigs together with RagTag. | `RagTag` |
 
 | Tool  | Description |
