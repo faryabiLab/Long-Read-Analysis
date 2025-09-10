@@ -1,5 +1,5 @@
 #!/bin/bash
-# Align, convert, and sort assembled contigs to refrence genome
+# Align ONT data with Dorado
 
 
 USAGE="Usage: $0 -f <fastq to align> -a <assembly fasta> -o <output prefix> -p <dorado path>"
@@ -49,9 +49,23 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="${path}/dorado aligner --output-dir . --emit-summary --threads ${threads} --mm2-opts '-Y' ${assem} ${fastq}"
+fastq_full=$(realpath "${fastq}")
+assem_full=$(realpath "${assem}")
 
-echo ${cmd} > "${out_prefix}.align_dorado.cmd"
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename "$0")
+base="${base_name%.*}"
 
-eval ${cmd}
+script_name="${base}_${stamp}.sh"
+
+cat > "${script_name}"<<EOF
+#!/bin/bash
+${path}/dorado aligner --output-dir . --emit-summary --threads ${threads} --mm2-opts '-Y' ${assem_full} ${fastq_full}
+EOF
+
+chmod +x "${script_name}"
+
+echo "Wrote executable script: ${script_name}"
+
+./"${script_name}"
 
