@@ -1,6 +1,12 @@
 #!/bin/bash
 # Align, convert, and sort assembled contigs to refrence genome
-
+# Parameters:
+preset="asm5"
+softclip="-Y"
+threads=24
+ref="" 		# PASSED ON CLI
+assem="" 	# PASSED ON CLI
+out_prefix=""	# PASSED ON CLI
 
 USAGE="Usage: $0 -f <reference fasta> -a <assembly fasta> -o <output prefix>"
 
@@ -14,15 +20,22 @@ function print_usage_exit()
 	exit 1
 }
 
+function archive_run()
+{
+	stamp=$(date +"%Y%m%d_%H%M%S")
+	base_name=$(basename $0)
+	base="${base_name%.*}"
+
+	out="${base}_${stamp}.sh"
+
+	cp "$0" "${out}"
+	echo "Archived script $0 to $out."
+}
+
 if [[ $# -eq 0 ]]; then
 	echo $USAGE
 	exit 1
 fi
-
-ref=""
-assem=""
-threads=48
-out_prefix=""
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -44,8 +57,21 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="minimap2 -ax asm5 -Y -t ${threads} ${ref} ${assem} | samtools view -bS - | samtools sort -@ ${threads} -o ${out_prefix}.sorted.bam"
-echo ${cmd} > "${out_prefix}.align_assembly.cmd"
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
-eval ${cmd}
+script_name="${base}_${stamp}.sh"
 
+# Write the command into a new script
+cat > "$script_name" <<EOF
+#!/bin/bash
+minimap2 -ax asm5 -Y -t ${threads} ${ref} ${assem} | samtools view -bS - | samtools sort -@ ${threads} -o ${out_prefix}.sorted.bam
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
