@@ -57,6 +57,9 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
+ref_full=$(realpath "${ref}")
+assem_full=$(realpath "${assem}")
+
 stamp=$(date +"%Y%m%d_%H%M%S")
 base_name=$(basename $0)
 base="${base_name%.*}"
@@ -66,7 +69,7 @@ script_name="${base}_${stamp}.sh"
 # Write the command into a new script
 cat > "$script_name" <<EOF
 #!/bin/bash
-minimap2 -ax asm5 -Y -t ${threads} ${ref} ${assem} | samtools view -bS - | samtools sort -@ ${threads} -o ${out_prefix}.sorted.bam
+minimap2 -ax asm5 -Y -t ${threads} ${ref_full} ${assem_full} | samtools view -bS - | samtools sort -@ ${threads} -o ${out_prefix}.sorted.bam
 EOF
 
 chmod +x "$script_name"
