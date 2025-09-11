@@ -78,3 +78,6 @@ echo "Wrote executable script: $script_name"
 
 # Run the command immediately
 ./"$script_name"
+
+
+# and if i don't see ya, good afternoon, good evening, and goodnight.
