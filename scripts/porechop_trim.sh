@@ -48,7 +48,7 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
-porechop -i ${fastq} -o ${output_prefix}_trimmed.fastq.gz -t ${threads} -v 3
+porechop -i ${fastq_full} -o ${output_prefix}_trimmed.fastq.gz -t ${threads} -v 3
 EOF
 
 chmod +x "$script_name"
