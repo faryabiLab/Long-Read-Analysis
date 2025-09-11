@@ -1,8 +1,11 @@
 #!/bin/bash
-# Align, convert, and sort assembled contigs to refrence genome
+# Get summary statistics for an ONT fastq with NanoPlot
+# Parameters:
+fastq=""	# PASSED VIA CLI
+out_prefix=""	# PASSED VIA CLI
+threads=24
 
-
-USAGE="Usage: $0 -f <reference fasta>"
+USAGE="Usage: $0 -f <reference fasta> -o <output prefix>"
 
 function print_usage_exit()
 {
@@ -18,11 +21,6 @@ if [[ $# -eq 0 ]]; then
 	echo $USAGE
 	exit 1
 fi
-
-fastq=""
-assem=""
-threads=24
-out_prefix=""
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -40,8 +38,22 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="NanoPlot -t ${threads} --fastq ${fastq} -o . -p ${out_prefix} --raw --tsv_stats --info_in_report"
-echo ${cmd} > "${out_prefix}.NanoPlot.cmd"
+fastq_full=$(realpath "${fastq}")
 
-eval ${cmd}
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
+script_name="${base}_${stamp}.sh"
+
+cat > "${script_name}" <<EOF
+#!/bin/bash
+NanoPlot -t ${threads} --fastq ${fastq} -o . -p ${out_prefix} --raw --tsv_stats --info_in_report
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
