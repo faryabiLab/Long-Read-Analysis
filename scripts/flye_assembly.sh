@@ -1,5 +1,10 @@
 #!/bin/bash
 # Assemble a draft genome using Flye
+# Parameters:
+fastq=""	# PASSED VIA CLI
+size=0		# PASSED VIA CLI
+out_prefix=""	# PASSED VIA CLI
+threads=24
 
 USAGE="Usage: $0 -f <fastq> -o <output prefix> -g <est. genome size>"
 
@@ -17,11 +22,6 @@ if [[ $# -eq 0 ]]; then
 	echo $USAGE
 	exit 1
 fi
-
-fastq=""
-size=0
-threads=24
-out_prefix=""
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -43,9 +43,21 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="flye --nano-hq ${fastq} -o . -t ${threads} -g ${size}"
+fastq_full=$(realpath "${fastq}")
 
-echo ${cmd} > "${out_prefix}.Flye_assembly.cmd"
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
-eval ${cmd}
+script_name="${base}_${stamp}.sh"
 
+cat > "$script_name" <<EOF 
+flye --nano-hq ${fastq_full} -o . -t ${threads} -g ${size}
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
