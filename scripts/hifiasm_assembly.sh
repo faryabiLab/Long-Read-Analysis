@@ -1,7 +1,11 @@
 #!/bin/bash
 # Assemble ONT reads with HiFiasm
+# Parameters:
+fastq=""	# PASSED VIA CLI
+out_prefix=""	# PASSED VIA CLI
+threads=24
 
-USAGE="Usage: $0 -f <fastq>"
+USAGE="Usage: $0 -f <fastq> -o <output prefix>"
 
 function print_usage_exit()
 {
@@ -17,10 +21,6 @@ if [[ $# -eq 0 ]]; then
 	echo $USAGE
 	exit 1
 fi
-
-threads=48
-fastq=""
-out_prefix=""
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -38,8 +38,22 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="hifiasm -o ${out_prefix}.asm --ont -t ${threads} ${fastq}"
-echo ${cmd} > "${out_prefix}.HiFiasm_assembly.cmd"
+fastq_full=$(realpath "${fastq}")
 
-eval ${cmd}
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
+script_name="${base}_${stamp}.sh"
+
+cat > "${script_name}" << EOF
+#!/bin/bash
+hifiasm -o ${out_prefix}.asm --ont -t ${threads} ${fastq}
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
