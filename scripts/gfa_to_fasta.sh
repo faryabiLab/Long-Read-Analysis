@@ -1,6 +1,9 @@
 #!/bin/bash
-# Align, convert, and sort assembled contigs to refrence genome
-
+# Convert .gfa to fasta
+# Parameters:
+gfa=""		# PASSED VIA CLI
+out_prefix=""	# PASSED VIA CLI
+threads=24
 
 USAGE="Usage: $0 -g <gfa to convert> -o <output prefix>"
 
@@ -19,15 +22,10 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-ref=""
-assem=""
-threads=48
-out_prefix=""
-
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		-g | --gfa )
-			ref="$2"
+			gfa="$2"
 			shift 2 # Shift past both argument and value
 			;;
 		-o | --output_prefix )
@@ -40,8 +38,22 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="gfatools gfa2fa ${gfa} > ${out_prefix}.fasta"
-echo ${cmd} > "${out_prefix}.gfa_to_fasta.cmd"
+gfa_full=$(realpath "${gfa}")
 
-eval ${cmd}
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
+script_name="${base}_${stamp}.sh"
+
+cat > "${script_name}" <<EOF
+#!/bin/bash
+gfatools gfa2fa ${gfa_full} > ${out_prefix}.fasta
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
