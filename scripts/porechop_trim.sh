@@ -1,6 +1,9 @@
 #!/bin/bash
 # Trim ONT reads in a fastq file with porechop
-
+# Parameters:
+fastq=""		# PASSED VIA CLI
+output_prefix=""	# PASSED VIA CLI
+threads=24
 
 USAGE="Usage: $0 -f <fastq to trim> -o <output prefix>"
 
@@ -19,12 +22,6 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-fastq=""
-assem=""
-threads=24
-out_prefix=""
-path=""
-
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		-f | --fastq )
@@ -41,9 +38,22 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="porechop -i ${fastq} -o ${output_prefix}_trimmed.fastq.gz -t ${threads} -v 3"
+fastq_full=$(realpath "${fastq}")
 
-echo ${cmd} > "${out_prefix}.align_dorado.cmd"
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
-eval ${cmd}
+script_name="${base}_${stamp}.sh"
 
+cat > "${script_name}" <<EOF
+#!/bin/bash
+porechop -i ${fastq} -o ${output_prefix}_trimmed.fastq.gz -t ${threads} -v 3
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
