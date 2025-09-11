@@ -1,6 +1,10 @@
 #!/bin/bash
 # Scaffold together contigs with RagTag
-
+# Parameters:
+ref=""		# PASSED VIA CLI
+assem=""	# PASSED VIA CLI
+out_prefix=""	# PASSED VIA CLI
+threads=24
 
 USAGE="Usage: $0 -f <reference fasta> -a <assembly fasta> -o <output prefix>"
 
@@ -18,11 +22,6 @@ if [[ $# -eq 0 ]]; then
 	echo $USAGE
 	exit 1
 fi
-
-ref=""
-assem=""
-threads=48
-out_prefix=""
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -44,8 +43,22 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="ragtag.py scaffold -t 24 -o . -r ${ref} ${assem}"
-echo ${cmd} > "${out_prefix}.ragtag_scaffold.cmd"
+ref_full=$(realpath "${ref}")
+assem_full=$(realpath "${assem}")
 
-eval ${cmd}
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
+script_name="${base}_${stamp}.sh"
+
+cat > "${script_name}" <<EOF
+ragtag.py scaffold -t 24 -o . -r ${ref} ${assem}
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
