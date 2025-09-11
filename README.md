@@ -38,8 +38,7 @@ This section highlights the analysis scripts in this repository, broken down by 
 #### Alignment Extraction
 | Script  | Description | Tool(s)
 | ------------- | ------------- | ---------- |
-| `scripts/extract_split_reads.sh`  | Series of `samtools` operations to extract split reads (reads that map to 2 different reference sequences.  | `samtools` |
-| `scripts/extract_bnd_reads.sh` | Extract split reads and reads providing context in flanking regions. |
+| `scripts/extract_split_reads.sh` | Extract split reads and reads providing context in flanking regions by specifying a window size in bp. | `samtools` |
 | `scripts/extract_bnd_reads_noWindow.sh` | Extract split reads by specifying chromosomal start and end coordinates, no window needed. | `samtools` |
 | `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. | `samtools` |
 #### Assembly
