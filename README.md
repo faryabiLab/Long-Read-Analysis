@@ -18,7 +18,7 @@ conda activate <env>
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
 #### Logging
-Upon execution, each of the below scripts will generate an executable script containing the commands run, named as `{script}_{date}_{time}` (date is `YYYYMMDD`, time is `HHMMSS`). These generated scripts can be run as-is to reproduce a result.
+Upon execution, each of the below scripts will generate an executable script containing the commands run, named as `{script}_{date}_{time}` (date is `YYYYMMDD`, time is `HHMMSS` in military time). These generated scripts can be run as-is to reproduce a result.
 #### Quality Control / Filtering
 | Script  | Description | Tool(s) 
 | ------------- | ------------- | ------- |
