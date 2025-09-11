@@ -1,6 +1,10 @@
 #!/bin/bash
 # Use mosdepth and spectre to do Copy Number Variation (CNV) analysis
-
+# Parameters:
+bam=""		# PASSED VIA CLI
+fasta=""	# PASSED VIA CLI
+out_prefix=""	# PASSED VIA CLI
+threads=24
 
 USAGE="Usage: $0 -b <bam> -f <reference fasta> -o <output prefix>"
 
@@ -19,12 +23,6 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-bam=""
-assem=""
-threads=24
-out_prefix=""
-fasta=""
-
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		-b | --bam )
@@ -32,7 +30,7 @@ while [[ $# -gt 0 ]]; do
 			shift 2 # Shift past both argument and value
 			;;
 		-f | --fasta )
-			fasta-"$2"
+			fasta="$2"
 			shift 2
 			;;
 		-o | --output_prefix )
@@ -45,15 +43,25 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="
+bam_full=$(realpath "${bam}")
+fasta_full=$(realpath"${fasta}")
+
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename "$0")
+base="${base_name%.*}"
+
+script_name="${base}_${stamp}.sh"
+
+cat > "${script_name}" <<EOF
 echo '1: Calculating read depth information'
-mosdepth -t 8 -x -b 1000 -Q 20 ${out_prefix} ${bam}
+mosdepth -t 8 -x -b 1000 -Q 20 ${out_prefix} ${bam_full}
 
 echo '2: Calling CNV with Spectre'
-spectre CNVCaller --coverage ${out_prefix}.mosdepth.regions.bed.gz --sample-id ${out_prefix} --output-dir . --reference ${fasta}
-"
+spectre CNVCaller --coverage ${out_prefix}.mosdepth.regions.bed.gz --sample-id ${out_prefix} --output-dir . --reference ${fasta_full}
+EOF
 
-echo ${cmd} > "${out_prefix}.Spectre_CNV.cmd"
+chmod +x "${script_name}"
 
-eval ${cmd}
+echo "Wrote executable script: ${script_name}"
 
+./"${script_name}"
