@@ -48,7 +48,7 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" << EOF
 #!/bin/bash
-hifiasm -o ${out_prefix}.asm --ont -t ${threads} ${fastq}
+hifiasm -o ${out_prefix}.asm --ont -t ${threads} ${fastq_full}
 EOF
 
 chmod +x "$script_name"
