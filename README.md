@@ -17,6 +17,8 @@ conda activate <env>
 **Note:** The name of each environment is the filename without `.yml`.
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
+#### Logging
+Upon execution, each of the below scripts will generate an executable script containing the commands run, named as `{script}_{date}_{time}` (date is `YYYYMMDD`, time is `HHMMSS`).
 #### Quality Control / Filtering
 | Script  | Description | Tool(s) 
 | ------------- | ------------- | ------- |
