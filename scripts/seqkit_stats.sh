@@ -47,7 +47,7 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
-seqkit stats ${fasta} --all > ${out_prefix}.stats
+seqkit stats ${fasta_full} --all > ${out_prefix}.stats
 EOF
 
 chmod +x "$script_name"
