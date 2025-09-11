@@ -1,6 +1,8 @@
 #!/bin/bash
-# Align, convert, and sort assembled contigs to refrence genome
-
+# Get assembly statistics with seqkit
+# Parameters:
+fasta=""	# PASSED VIA CLI
+out_prefix=""	# PASSED VIA CLI
 
 USAGE="Usage: $0 -f <fasta> -o <out prefix>"
 
@@ -19,9 +21,6 @@ if [[ $# -eq 0 ]]; then
 	exit 1
 fi
 
-fasta=""
-out_prefix=""
-
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		-f | --fasta )
@@ -38,9 +37,22 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="seqkit stats ${fasta} --all > ${out_prefix}.stats"
+fasta_full=$(realpath "${fasta}")
 
-echo ${cmd} > "${out_prefix}.seqkit_stats.cmd"
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
 
-eval ${cmd}
+script_name="${base}_${stamp}.sh"
 
+cat > "${script_name}" <<EOF
+#!/bin/bash
+seqkit stats ${fasta} --all > ${out_prefix}.stats
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
