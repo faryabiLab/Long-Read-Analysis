@@ -53,7 +53,7 @@ base="${base_name%.*}"
 script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
-ragtag.py scaffold -t 24 -o . -r ${ref} ${assem}
+ragtag.py scaffold -t 24 -o . -r ${ref_full} ${assem_full}
 EOF
 
 chmod +x "$script_name"
