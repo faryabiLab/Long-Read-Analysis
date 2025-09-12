@@ -75,7 +75,8 @@ Upon execution, each of the below scripts will generate an executable script con
 * Upload track files in `data/JBrowse_Sessions`  to view alignments.
 
 ## Tool List
-All tools below are available as conda environments in `envs/`.
+All tools below are available as conda environments in `envs/`. \
+Specifics of custom parameters can be found in `TOOL-TIPS.md`.
 * Seqkit
   * Manipulating sequence files   
   * https://bioinf.shenwei.me/seqkit/
