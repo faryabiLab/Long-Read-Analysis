@@ -3,11 +3,11 @@ This repository stores conda environment manifests and scripts necessary for Who
 ## Environments
 Use `conda` to set up compute environments for the scripts below. \
 Available environments:
-| Environment  | Description |
-| ------------- | ------------- |
-| `envs/ont-env.yml` | Long read analysis-specific software |
-| `envs/hic_process.yml` | HiC/MicroC alignment and processing with Juicer. |
-| `envs/eaglec.yml` | Structural variant detection from HiC contact matrices with EagleC. |
+| Environment  | Description | Usage |
+| ------------- | ------------- | ------- |
+| `envs/ont-env.yml` | Long read analysis-specific software | ONT-specific analyses.
+| `envs/hic_process.yml` | HiC/MicroC alignment and processing with Juicer. | HiC alignment and processing
+| `envs/eaglec.yml` | Structural variant detection from HiC contact matrices with EagleC. | SV detection via HiC matrix.
 
 Install and activate any of these with
 ```
