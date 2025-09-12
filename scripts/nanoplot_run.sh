@@ -48,7 +48,7 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
-NanoPlot -t ${threads} --fastq ${fastq} -o . -p ${out_prefix} --raw --tsv_stats --info_in_report
+NanoPlot -t ${threads} --fastq ${fastq} -o . -p ${out_prefix} --raw --tsv_stats --info_in_report --huge
 EOF
 
 chmod +x "$script_name"
