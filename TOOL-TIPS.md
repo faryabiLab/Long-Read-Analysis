@@ -35,7 +35,7 @@ De-novo assembler for long read data. Prodices collapsed assemblies of diploid g
 * `-g <size>` - A rough size of the genome Flye will assemble. This usually helps genome assembly.
 
 ## HiFiasm
-De-novo assembler for long read data. Produces haplotye-resolved assemblies.
+De-novo assembler for long read data. Produces haplotye-resolved assemblies. Output is slightly more complicated than Flye's, and requires more analysis to determine identities of haplotypes + rate of swapping between them.
 #### Included suggested parameters:
 * `--ont` - Specifies input data are ONT R10 reads.
 
