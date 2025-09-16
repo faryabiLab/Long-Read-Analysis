@@ -1,4 +1,4 @@
-name: /dobby/noah/ont-env
+name: ont-env
 channels:
   - anaconda
   - conda-forge
@@ -631,4 +631,3 @@ dependencies:
       - tqdm==4.67.1
       - typer==0.12.5
       - vbz-h5py-plugin==1.0.1
-prefix: /dobby/noah/ont-env
