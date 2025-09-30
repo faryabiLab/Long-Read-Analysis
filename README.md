@@ -15,7 +15,8 @@ Install and activate any of the conda environments with:
 conda env create -f <env.yml>
 conda activate <env>
 ```
-**Note:** The name of each environment is the filename without `.yml`.
+**Note:** The name of each environment is the filename without `.yml`. \
+
 Build the herro Docker conainer:
 ```
 cd envs/herro
