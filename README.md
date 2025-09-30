@@ -29,6 +29,16 @@ Upon execution, each of the below scripts will generate an executable script in 
   * Date = `YYYYMMDD`; Time = `HHMMSS` (24hr time)  
 * These generated scripts can be run as-is with no parameters to reproduce its result, i.e. `./{script}_{date}_{time}.sh`
 * Can be run from anywhere.
+#### Headers
+Each of the generated executable scripts will have a standardized header section (I suggest adding this to future scripts as well).
+```
+# ========================================
+# Run on: <server name>
+# Run by: <username>
+# Environment: <conda env name>
+# Run in directory <dir executed from>
+# ========================================
+```
 #### Quality Control / Filtering
 | Script  | Description | Tool(s) | Environment 
 | ------------- | ------------- | ------- | ----- |
