@@ -30,7 +30,7 @@ Upon execution, each of the below scripts will generate an executable script in 
 * These generated scripts can be run as-is with no parameters to reproduce its result, i.e. `./{script}_{date}_{time}.sh`
 * Can be run from anywhere.
 #### Headers
-Each of the generated executable scripts will have a standardized header section (I suggest adding this to future scripts as well).
+Each of the generated executable scripts will have a standardized header section with run metadata (I suggest adding this to future scripts as well).
 ```
 # ========================================
 # Run on: <server name>
