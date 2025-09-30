@@ -53,6 +53,12 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Run in directory $(pwd)
+# ========================================
+
 seqkit seq -ni ${fastq} > ${out_prefix}.readIDs.txt
 ${dir}/create_batched_alignments.sh ${fastq} ${out_prefix}.readIDs.txt ${threads} ./batched_alignments
 EOF

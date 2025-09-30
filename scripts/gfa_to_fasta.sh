@@ -48,6 +48,13 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $(basename "$CONDA_PREFIX")
+# Run in directory $(pwd)
+# ========================================
+
 gfatools gfa2fa ${gfa_full} > ${out_prefix}.fasta
 EOF
 

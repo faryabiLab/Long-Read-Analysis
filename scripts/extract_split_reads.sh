@@ -84,6 +84,13 @@ echo "Extracting reads from ${chr1}:${start1}-${end1} and ${chr2}:${start2}-${en
 
 cat > "$script_name" <<EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $(basename "$CONDA_PREFIX")
+# Run in directory $(pwd)
+# ========================================
+
 echo '1: Extract ${chr1}:${start1}-${end1} from ${bam_full}'
 samtools view -@ ${threads} -F 4 ${bam_full} ${chr1}:${start1}-${end1} | cut -f1 | sort | uniq > ${out_prefix}_${chr1}_reads.txt
 

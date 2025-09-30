@@ -69,6 +69,13 @@ script_name="${base}_${stamp}.sh"
 # Write the command into a new script
 cat > "$script_name" <<EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $(basename "$CONDA_PREFIX")
+# Run in directory $(pwd)
+# ========================================
+
 minimap2 -ax asm5 -Y -t ${threads} ${ref_full} ${assem_full} | samtools view -bS - | samtools sort -@ ${threads} -o ${out_prefix}.sorted.bam
 EOF
 

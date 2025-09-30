@@ -53,6 +53,14 @@ base="${base_name%.*}"
 script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
+#!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $(basename "$CONDA_PREFIX")
+# Run in directory $(pwd)
+# ========================================
+
 ragtag.py scaffold -t 24 -o . -r ${ref_full} ${assem_full}
 EOF
 

@@ -48,6 +48,13 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" << EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $(basename "$CONDA_PREFIX")
+# Run in directory $(pwd)
+# ========================================
+
 hifiasm -o ${out_prefix}.asm --ont -t ${threads} ${fastq_full}
 EOF
 

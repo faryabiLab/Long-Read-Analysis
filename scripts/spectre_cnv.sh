@@ -53,6 +53,14 @@ base="${base_name%.*}"
 script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
+#!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $(basename "$CONDA_PREFIX")
+# Run in directory $(pwd)
+# ========================================
+
 echo '1: Calculating read depth information'
 mosdepth -t 8 -x -b 1000 -Q 20 ${out_prefix} ${bam_full}
 

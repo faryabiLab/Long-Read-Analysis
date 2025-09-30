@@ -48,6 +48,13 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $(basename "$CONDA_PREFIX")
+# Run in directory $(pwd)
+# ========================================
+
 porechop -i ${fastq_full} -o ${output_prefix}_trimmed.fastq.gz -t ${threads} -v 3
 EOF
 

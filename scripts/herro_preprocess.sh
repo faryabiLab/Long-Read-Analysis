@@ -53,6 +53,12 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Run in directory $(pwd)
+# ========================================
+
 ${dir}/preprocess.sh ${fastq} ${out_prefix} 16 16
 EOF
 

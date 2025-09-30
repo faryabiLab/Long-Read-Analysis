@@ -65,6 +65,12 @@ script_name="${base}_${stamp}.sh"
 
 cat > "${script_name}" <<EOF
 #!/bin/bash
+# ========================================
+# Run on: $(hostname)
+# Run by: $(whoami)
+# Run in directory $(pwd)
+# ========================================
+
 herro inference --read-alns ${batch_dir} -t ${threads} -d ${device} -m ${model_path} -b ${batch_size} ${preprocessed_reads} ${out_prefix}.fasta
 EOF
 
