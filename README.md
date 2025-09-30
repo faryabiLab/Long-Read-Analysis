@@ -10,10 +10,16 @@ Available environments:
 | `envs/eaglec.yml` | Structural variant detection from HiC contact matrices with EagleC. | SV detection via HiC matrix.
 | `envs/herro/Dockerfile` | Herro read correction (Docker container) | GPU-enabled read error correction with Herro
 
-Install and activate any of these with
+Install and activate any of the conda environments with:
 ```
 conda env create -f <env.yml>
 conda activate <env>
+```
+
+Build the herro Docker conainer:
+```
+cd envs/herro
+docker built --name herro:latest .
 ```
 **Note:** The name of each environment is the filename without `.yml`.
 ## Scripts
