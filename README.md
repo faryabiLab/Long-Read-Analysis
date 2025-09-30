@@ -39,7 +39,7 @@ Each of the generated executable scripts will have a standardized header section
 # Run in directory <dir executed from>
 # ========================================
 ```
-The logging scheme tells a user the **Who, What, When, Where** of a run.
+The logging scheme tells the **Who, What, When, Where** of a run.
 #### Quality Control / Filtering
 | Script  | Description | Tool(s) | Environment 
 | ------------- | ------------- | ------- | ----- |
