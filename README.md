@@ -19,7 +19,7 @@ conda activate <env>
 Build the herro Docker conainer:
 ```
 cd envs/herro
-docker built --name herro:latest .
+docker build --name herro:latest .
 ```
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
