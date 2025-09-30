@@ -20,12 +20,12 @@ This section highlights the analysis scripts in this repository, broken down by 
 ### Logging
 Upon execution, each of the below scripts will generate an executable script in the directory from which it was run containing only the command(s) run, named as `{script}_{date}_{time}.sh` (date is `YYYYMMDD`, time is `HHMMSS` in 24hr time). These generated scripts can be run as-is with no parameters to reproduce its result, i.e. via `./{script}_{date}_{time}.sh`.
 #### Quality Control / Filtering
-| Script  | Description | Tool(s) 
-| ------------- | ------------- | ------- |
-| `scripts/seqkit_stats.sh`  | Simple wrapper of `seqkit stats` command to get assembly statistics like average length and N50.  | `seqkit` |
-| `scripts/filter_reads_length.sh`  | Wraps `FiltLong` to filter out reads in the bottom 10% by length.  | `FiltLong` |
-| `scripts/nanoplot_run.sh` | Use `NanoPlot` to generate summary statistics for `fastq` | `NanoPlot` |
-| `scripts/porechop_trim.sh` | Wraps `porechop` for adapter trimming. | `porechop` |
+| Script  | Description | Tool(s) | Environment 
+| ------------- | ------------- | ------- | ----- |
+| `scripts/seqkit_stats.sh`  | Simple wrapper of `seqkit stats` command to get assembly statistics like average length and N50.  | `seqkit` | `ont-env`
+| `scripts/filter_reads_length.sh`  | Wraps `FiltLong` to filter out reads in the bottom 10% by length.  | `FiltLong` | `ont-env`
+| `scripts/nanoplot_run.sh` | Use `NanoPlot` to generate summary statistics for `fastq` | `NanoPlot` | `ont-env`
+| `scripts/porechop_trim.sh` | Wraps `porechop` for adapter trimming. | `porechop` | `ont-env`
 #### Herro Read Error Correction
 | Script  | Description |
 | ------------- | ------------- |
@@ -33,43 +33,43 @@ Upon execution, each of the below scripts will generate an executable script in 
 | `scripts/herro_batch_align.sh` | Runs the `herro` batch alignment workflow. |
 | `scripts/herro_correct.sh` | Runs the `herro` read error correction pipeline. |
 #### Alignment
-| Script  | Description | Tool(s)
-| ------------- | ------------- | ---------- |
-| `scripts/align_ont_dorado.sh`  | Align ONT `fastq` with `dorado align`. | Dorado (`minimap2`) |
-| `scripts/align_contigs_to_ref.sh`  | Wraps `minimap2`, used to align assembled contigs to reference sequence.  | `minimap2` |
+| Script  | Description | Tool(s) | Environment 
+| ------------- | ------------- | ---------- | ----- |
+| `scripts/align_ont_dorado.sh`  | Align ONT `fastq` with `dorado align`. | Dorado (`minimap2`) | `ont-env`
+| `scripts/align_contigs_to_ref.sh`  | Wraps `minimap2`, used to align assembled contigs to reference sequence.  | `minimap2` | `ont-env`
 #### Alignment Extraction
-| Script  | Description | Tool(s)
-| ------------- | ------------- | ---------- |
-| `scripts/extract_split_reads.sh` | Extract split reads and reads providing context in flanking regions by specifying a window size in bp. | `samtools` |
-| `scripts/extract_bnd_reads_noWindow.sh` | Extract split reads by specifying chromosomal start and end coordinates, no window needed. | `samtools` |
-| `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. | `samtools` |
+| Script  | Description | Tool(s) | Environment
+| ------------- | ------------- | ---------- | ----- |
+| `scripts/extract_split_reads.sh` | Extract split reads and reads providing context in flanking regions by specifying a window size in bp. | `samtools` | `ont-env`
+| `scripts/extract_bnd_reads_noWindow.sh` | Extract split reads by specifying chromosomal start and end coordinates, no window needed. | `samtools` | `ont-env`
+| `scripts/extract_spanning_contigs.sh` | After aligning assembled contigs to a reference genome with `align_contigs_to_ref.sh`, extract contigs that align to multiple chromosomes. | `samtools` | `ont-env`
 #### Assembly
-| Script  | Description | Tool(s) 
-| ------------- | ------------- | ------- |
-| `scripts/hifiasm_assembly.sh`  | Assemble a `fastq` using `hifiasm`. | `HiFiasm` |
-| `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. | `Flye` | 
-| `scripts/ragtag_scaffold.sh` | Scaffold conntigs together with RagTag. | `RagTag` |
+| Script  | Description | Tool(s) | Environment 
+| ------------- | ------------- | ------- | ----- |
+| `scripts/hifiasm_assembly.sh`  | Assemble a `fastq` using `hifiasm`. | `HiFiasm` | `ont-env`
+| `scripts/flye_assembly.sh` | Assemble a `fastq` using `flye`. | `Flye` | `ont-env` 
+| `scripts/ragtag_scaffold.sh` | Scaffold conntigs together with RagTag. | `RagTag` | `ont-env`
 
 | Tool  | Description |
 | ------------- | ------------- |
 | [D-GENIES](https://dgenies.toulouse.inra.fr/run) | UI used for generating dotplots from paired `fasta` |
 #### Structural Variant Discovery
-| Script  | Description | Tool(s) 
-| ------------- | ------------- | -------- |
-| `scripts/eaglec_bnds.sh` | Find structural variants from a 3C matrix in `.mcool` format. | `EagleC` |
-| `scripts/spectre_cnv.sh` | Calculate & plot copy number information from read depth. | `spectre` |
+| Script  | Description | Tool(s) | Environment 
+| ------------- | ------------- | -------- |  ----- |
+| `scripts/eaglec_bnds.sh` | Find structural variants from a 3C matrix in `.mcool` format. | `EagleC` | `eaglec`
+| `scripts/spectre_cnv.sh` | Calculate & plot copy number information from read depth. | `spectre` | `ont-env`
 #### Assembly Annotation
-| Script  | Description | Tool(s)
-| ------------- | ------------- | -------- |
-| `scripts/liftoff_gene_annotations.sh` | USe a reference `.gtf` and `.fasta` to annotate gene sequences in assembly `.fasta` | `Liftoff` |
+| Script  | Description | Tool(s) | Environment 
+| ------------- | ------------- | -------- | ----- |
+| `scripts/liftoff_gene_annotations.sh` | USe a reference `.gtf` and `.fasta` to annotate gene sequences in assembly `.fasta` | `Liftoff` | `ont-env`
 #### Utilities / Miscellaneous
-| Script  | Description |
-| ------------- | ------------- |
-| `scripts/parse_cigar.py` | Parse and plot CIGAR strings within a `sam` file. |
-| `scripts/alignment_summarry.sh` | Quickly get alignments of a contig after being aligned to a reference genome. |
-| `sctipts/make_bnd_seq.sh`  |  Subsequence 2 sequences from a reference fasta file as given coordinates, returning them as separate `fasta` entries in a single file. |
-| `sctipts/make_bnd_seq_concat.sh`  |  Concatenate 2 sequences from a reference fasta file as given coordinates, returning them as a single `fasta` entry. |
-| `scripts/gfa_to_fasta.sh` | Convert a `gfa` file to a `fasta` file with `gfatools` |
+| Script  | Description | Environment 
+| ------------- | ------------- | ----- |
+| `scripts/parse_cigar.py` | Parse and plot CIGAR strings within a `sam` file. | `ont-env`
+| `scripts/alignment_summarry.sh` | Quickly get alignments of a contig after being aligned to a reference genome. | `ont-env`
+| `sctipts/make_bnd_seq.sh`  |  Subsequence 2 sequences from a reference fasta file as given coordinates, returning them as separate `fasta` entries in a single file. | `ont-env`
+| `sctipts/make_bnd_seq_concat.sh`  |  Concatenate 2 sequences from a reference fasta file as given coordinates, returning them as a single `fasta` entry. | `ont-env`
+| `scripts/gfa_to_fasta.sh` | Convert a `gfa` file to a `fasta` file with `gfatools` | `ont-env`
 ## Browsers
 **[JBrowse2](https://jbrowse.org/jb2/)**
 * Upload track files in `data/JBrowse_Sessions`  to view alignments.
