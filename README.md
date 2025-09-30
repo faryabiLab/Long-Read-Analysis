@@ -87,7 +87,6 @@ The logging scheme tells the **Who, What, When, Where** of a run.
 | Script  | Description | Environment 
 | ------------- | ------------- | ----- |
 | `scripts/parse_cigar.py` | Parse and plot CIGAR strings within a `sam` file. | `ont-env`
-| `scripts/alignment_summarry.sh` | Quickly get alignments of a contig after being aligned to a reference genome. | `ont-env`
 | `sctipts/make_bnd_seq.sh`  |  Subsequence 2 sequences from a reference fasta file as given coordinates, returning them as separate `fasta` entries in a single file. | `ont-env`
 | `sctipts/make_bnd_seq_concat.sh`  |  Concatenate 2 sequences from a reference fasta file as given coordinates, returning them as a single `fasta` entry. | `ont-env`
 | `scripts/gfa_to_fasta.sh` | Convert a `gfa` file to a `fasta` file with `gfatools` | `ont-env`
