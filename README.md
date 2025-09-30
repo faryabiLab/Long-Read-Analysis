@@ -142,5 +142,5 @@ Specifics of custom parameters can be found in `TOOL-TIPS.md`.
   * Liftoff
     * Lift over genes from a reference sequence to an assembled / target sequence
     * https://github.com/agshumate/Liftoff 
-
+## Resources
 More tools can be found on [Long-Read-Tools](https://long-read-tools.org/index.html).
