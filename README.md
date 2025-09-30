@@ -24,7 +24,11 @@ docker build --name herro:latest .
 ## Scripts
 This section highlights the analysis scripts in this repository, broken down by analysis type.
 ### Logging
-Upon execution, each of the below scripts will generate an executable script in the directory from which it was run containing only the command(s) run, named as `{script}_{date}_{time}.sh` (date is `YYYYMMDD`, time is `HHMMSS` in 24hr time). These generated scripts can be run as-is with no parameters to reproduce its result, i.e. via `./{script}_{date}_{time}.sh`.
+Upon execution, each of the below scripts will generate an executable script in the directory from which it was run containing only the command(s) needed to reproduce the result.
+* Executables are named as `{script}_{date}_{time}.sh`
+  * Date = `YYYYMMDD`; Time = `HHMMSS` (24hr time)  
+* These generated scripts can be run as-is with no parameters to reproduce its result, i.e. `./{script}_{date}_{time}.sh`
+* Can be run from anywhere.
 #### Quality Control / Filtering
 | Script  | Description | Tool(s) | Environment 
 | ------------- | ------------- | ------- | ----- |
