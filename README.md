@@ -8,6 +8,7 @@ Available environments:
 | `envs/ont-env.yml` | Long read analysis-specific software | ONT-specific analyses.
 | `envs/hic_process.yml` | HiC/MicroC alignment and processing with Juicer. | HiC alignment and processing
 | `envs/eaglec.yml` | Structural variant detection from HiC contact matrices with EagleC. | SV detection via HiC matrix.
+| `envs/herro/Dockerfile` | Herro read correction (Docker container) | GPU-enabled read error correction with Herro
 
 Install and activate any of these with
 ```
@@ -27,11 +28,11 @@ Upon execution, each of the below scripts will generate an executable script in 
 | `scripts/nanoplot_run.sh` | Use `NanoPlot` to generate summary statistics for `fastq` | `NanoPlot` | `ont-env`
 | `scripts/porechop_trim.sh` | Wraps `porechop` for adapter trimming. | `porechop` | `ont-env`
 #### Herro Read Error Correction
-| Script  | Description |
-| ------------- | ------------- |
-| `scripts/herro_preprocess.sh` | Runs the `herro` pipeline preprocessing step. | 
-| `scripts/herro_batch_align.sh` | Runs the `herro` batch alignment workflow. |
-| `scripts/herro_correct.sh` | Runs the `herro` read error correction pipeline. |
+| Script  | Description | Environment 
+| ------------- | ------------- | ----- |
+| `scripts/herro_preprocess.sh` | Runs the `herro` pipeline preprocessing step. | `herro/Dockerfile`
+| `scripts/herro_batch_align.sh` | Runs the `herro` batch alignment workflow. | `herro/Dockerfile`
+| `scripts/herro_correct.sh` | Runs the `herro` read error correction pipeline. | `herro/Dockerfile`
 #### Alignment
 | Script  | Description | Tool(s) | Environment 
 | ------------- | ------------- | ---------- | ----- |
@@ -81,6 +82,9 @@ Specifics of custom parameters can be found in `TOOL-TIPS.md`.
   * Manipulating sequence files   
   * https://bioinf.shenwei.me/seqkit/
 * Quality Control
+  * Herro
+    * Correct basepair call errors (GPU-enabled)
+    * https://github.com/lbcb-sci/herro/tree/main  
   * FiltLong
     * Filter long read `fastq` 
     * https://github.com/rrwick/Filtlong
