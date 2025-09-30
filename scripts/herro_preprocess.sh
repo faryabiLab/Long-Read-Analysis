@@ -1,6 +1,10 @@
 #!/bin/bash
 # Run Herro preprocessing script 
 
+fastq=""
+threads=48
+out_prefix=""
+dir=""
 
 USAGE="Usage: $0 -f <fastq> -o <output prefix> -p <path to herro scripts dir>"
 
@@ -18,11 +22,6 @@ if [[ $# -eq 0 ]]; then
 	echo $USAGE
 	exit 1
 fi
-
-fastq=""
-threads=48
-out_prefix=""
-dir=""
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -44,8 +43,23 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-cmd="${dir}/preprocess.sh ${fastq} ${out_prefix} 16 16"
-echo ${cmd} > "${out_prefix}.Herro_preprocess.cmd"
+fastq_full=$(realpath "${fastq}")
 
-eval ${cmd}
+stamp=$(date +"%Y%m%d_%H%M%S")
+base_name=$(basename $0)
+base="${base_name%.*}"
+
+script_name="${base}_${stamp}.sh"
+
+cat > "${script_name}" <<EOF
+#!/bin/bash
+${dir}/preprocess.sh ${fastq} ${out_prefix} 16 16
+EOF
+
+chmod +x "$script_name"
+
+echo "Wrote executable script: $script_name"
+
+# Run the command immediately
+./"$script_name"
 
