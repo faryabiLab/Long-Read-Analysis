@@ -65,6 +65,8 @@ cat > "${script_name}" <<EOF
 # Run by: $(whoami)
 # Environment: $(basename "$CONDA_PREFIX")
 # Run in directory $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
 # ========================================
 
 liftoff -g ${gtf_full} ${assem_full} ${ref_full} -o ${out_prefix}.gtf
