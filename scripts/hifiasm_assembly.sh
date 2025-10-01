@@ -53,6 +53,8 @@ cat > "${script_name}" << EOF
 # Run by: $(whoami)
 # Environment: $(basename "$CONDA_PREFIX")
 # Run in directory $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
 # ========================================
 
 hifiasm -o ${out_prefix}.asm --ont -t ${threads} ${fastq_full}
