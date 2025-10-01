@@ -52,6 +52,8 @@ cat > "${script_name}" <<EOF
 # Run by: $(whoami)
 # Environment: $(basename "$CONDA_PREFIX")
 # Run in directory $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
 # ========================================
 
 seqkit stats ${fasta_full} --all > ${out_prefix}.stats
