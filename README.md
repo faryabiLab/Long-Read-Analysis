@@ -38,6 +38,8 @@ Each of the generated executable scripts will have a standardized header section
 # Run by: <username>
 # Environment: <conda env name>
 # Run in directory <dir executed from>
+# Date:
+# Time:
 # ========================================
 ```
 The logging scheme tells the **Who, What, When, Where** of a run.
