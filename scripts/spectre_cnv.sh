@@ -59,6 +59,8 @@ cat > "${script_name}" <<EOF
 # Run by: $(whoami)
 # Environment: $(basename "$CONDA_PREFIX")
 # Run in directory $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
 # ========================================
 
 echo '1: Calculating read depth information'
