@@ -57,6 +57,8 @@ cat > "${script_name}" <<EOF
 # Run on: $(hostname)
 # Run by: $(whoami)
 # Run in directory $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
 # ========================================
 
 ${dir}/preprocess.sh ${fastq} ${out_prefix} 16 16
