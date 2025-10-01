@@ -53,6 +53,8 @@ cat > "${script_name}" <<EOF
 # Run by: $(whoami)
 # Environment: $(basename "$CONDA_PREFIX")
 # Run in directory $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
 # ========================================
 
 NanoPlot -t ${threads} --fastq ${fastq} -o . -p ${out_prefix} --raw --tsv_stats --info_in_report --huge
