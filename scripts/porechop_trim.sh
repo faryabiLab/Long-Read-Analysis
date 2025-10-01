@@ -53,6 +53,8 @@ cat > "${script_name}" <<EOF
 # Run by: $(whoami)
 # Environment: $(basename "$CONDA_PREFIX")
 # Run in directory $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
 # ========================================
 
 porechop -i ${fastq_full} -o ${output_prefix}_trimmed.fastq.gz -t ${threads} -v 3
