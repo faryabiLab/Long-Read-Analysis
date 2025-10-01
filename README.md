@@ -96,7 +96,8 @@ The logging scheme tells the **Who, What, When, Where** of a run.
 ## Browsers
 **[JBrowse2](https://jbrowse.org/jb2/)**
 * Upload track files in `data/JBrowse_Sessions`  to view alignments.
-
+## Workflows
+TBA
 ## Tool List
 All tools below are available as conda environments in `envs/`. \
 Specifics of custom parameters can be found in `TOOL-TIPS.md`.
