@@ -48,7 +48,14 @@ script_name="${base}_${stamp}.sh"
 
 cat > "$script_name" <<EOF
 #!/bin/bash
+# ========================================
 # Run on: $(hostname)
+# Run by: $(whoami)
+# Environment: $CONDA_DEFAULT_ENV
+# Run in directory: $(pwd)
+# Date: $(date +"%m/%d/%Y")
+# Time: $(date +"%I:%M %p")
+# ========================================
 predictSV --hic-5k ${mcool_full}::/resolutions/5000 --hic-10k ${mcool_full}::/resolutions/10000 --hic-50k ${mcool_full}::/resolutions/50000 -O ${out_prefix} -g hg38 --balance-type Raw --output-format full
 EOF
 
